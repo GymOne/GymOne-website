@@ -1,0 +1,49 @@
+.main{
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  //bottom: 0;
+  opacity: 1;
+
+  margin-top: 50px;
+  margin-left: 90px;
+  margin-right: 150px;
+}
+
+.header {
+  overflow: hidden;
+  padding: 20px 10px;
+}
+
+.header a {
+  font-family: Monospace;
+  font-weight: bold;
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 40px;
+  line-height: 35px;
+  border-radius: 4px;
+}
+
+.header a.logo {
+  font-family: Stencil;
+  font-size: 70px;
+  font-weight: bold;
+}
+
+.header a:hover {
+  color: black;
+}
+
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.header-right {
+  float: right;
+}
