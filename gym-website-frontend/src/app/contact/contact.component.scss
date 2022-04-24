@@ -1,0 +1,88 @@
+// --- Back ground color and image with animation ---
+.home-img{
+  background-image: url("../../assets/images/gymExamBg.jpg");
+
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  opacity: 50%;
+
+  //overflow: hidden;
+  //visibility: inherit;
+}
+
+.bg-color{
+  background-color: #145781;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+//
+//.text-focus-in {
+//  -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+//  animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+//}
+//
+//@-webkit-keyframes text-focus-in {
+//  0% {
+//    -webkit-filter: blur(12px);
+//    filter: blur(12px);
+//    opacity: 0;
+//  }
+//  100% {
+//    -webkit-filter: blur(0px);
+//    filter: blur(0px);
+//    opacity: 80%;
+//  }
+//}
+//@keyframes text-focus-in {
+//  0% {
+//    -webkit-filter: blur(12px);
+//    filter: blur(12px);
+//    opacity: 0;
+//  }
+//  100% {
+//    -webkit-filter: blur(0px);
+//    filter: blur(0px);
+//    opacity: 80%;
+//  }
+//}
+
+.tracking-out-contract {
+  -webkit-animation: tracking-out-contract 0.7s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  animation: tracking-out-contract 0.7s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@-webkit-keyframes tracking-out-contract {
+  0% {
+    opacity: 80%;
+  }
+  50% {
+    opacity: 40%;
+  }
+  100% {
+    letter-spacing: -0.5em;
+    opacity: 0%;
+  }
+}
+@keyframes tracking-out-contract {
+  0% {
+    opacity: 80%;
+  }
+  50% {
+    opacity: 40%;
+  }
+  100% {
+    letter-spacing: -0.5em;
+    opacity: 0%;
+  }
+}
