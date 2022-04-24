@@ -6,33 +6,36 @@
   //bottom: 0;
   opacity: 1;
 
-  margin-top: 50px;
-  margin-left: 90px;
-  margin-right: 150px;
+  margin-top: 2vw;
+  margin-left: 5vw;
+  margin-right: 7vw;
 }
 
 .header {
   overflow: hidden;
-  padding: 20px 10px;
+  padding: 2vw 1vw;
 }
 
 .header a {
-  font-family: Monospace;
-  font-weight: bold;
+  font-family: fantasy;
+  letter-spacing: 0.2vw;
   float: left;
   color: black;
   text-align: center;
-  padding: 12px;
+  padding: 1vw;
   text-decoration: none;
-  font-size: 40px;
-  line-height: 35px;
-  border-radius: 4px;
+  font-size: 3.5vw;
+  line-height: 2vw;
+  border-radius: 0.5vw;
+  //-webkit-text-stroke: 2px white; /* width and color */
 }
 
 .header a.logo {
   font-family: Stencil;
-  font-size: 70px;
+  letter-spacing: 0;
+  font-size: 7vw;
   font-weight: bold;
+  //-webkit-text-stroke: 0px white; /* width and color */
 }
 
 .header a:hover {
@@ -40,8 +43,11 @@
 }
 
 .header a.active {
-  background-color: dodgerblue;
+  background-color: #145781;
   color: white;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
 }
 
 .header-right {
