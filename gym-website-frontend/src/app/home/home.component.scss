@@ -21,7 +21,7 @@ button, button::after {
   letter-spacing: 3px;
   //box-shadow: 6px 0px 0px white;
   outline: transparent;
-  position: relative;
+  position: absolute;
   cursor: pointer;
 }
 
@@ -172,6 +172,41 @@ button:hover::after {
   margin: 0;
 }
 
+.fade-in-fwd {
+  -webkit-animation: fade-in-fwd 2s cubic-bezier(0.940, 0.450, 0.460, 0.250) both;
+  animation: fade-in-fwd 2s cubic-bezier(0.940, 0.450, 0.460, 0.250) both;
+}
+
+.fade-in-fwd2 {
+  -webkit-animation: fade-in-fwd 2s cubic-bezier(0.940, 0.450, 0.460, 0.250) 0.7s both;
+  animation: fade-in-fwd 2s cubic-bezier(0.940, 0.450, 0.460, 0.250) 0.7s both;
+}
+
+@-webkit-keyframes fade-in-fwd {
+  0% {
+    -webkit-transform: translateZ(-80px);
+    transform: translateZ(-80px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in-fwd {
+  0% {
+    -webkit-transform: translateZ(-80px);
+    transform: translateZ(-80px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
 .slide-in-fwd-center {
   -webkit-animation: slide-in-fwd-center 2.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
   animation: slide-in-fwd-center 2.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
@@ -253,8 +288,8 @@ hr{
 }
 
 .slide-in-bottom {
-  -webkit-animation: slide-in-bottom 3s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
-  animation: slide-in-bottom 3s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
+  -webkit-animation: slide-in-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
+  animation: slide-in-bottom 2s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
 }
 
 @-webkit-keyframes slide-in-bottom {
@@ -281,4 +316,6 @@ hr{
     opacity: 1;
   }
 }
+
+
 

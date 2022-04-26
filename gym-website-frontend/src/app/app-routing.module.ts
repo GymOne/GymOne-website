@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'about', component: AboutComponent },
+  { path: "auth", loadChildren: () => import('./auth/auth.module').then(f=>f.AuthModule)},
 
   { path: '**', redirectTo: 'home' },
 ];
