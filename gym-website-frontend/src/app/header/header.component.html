@@ -1,9 +1,10 @@
 <div class="header main">
   <a routerLink="../home" class="logo">GymOne</a>
   <div class="header-right">
-    <a class="active" routerLink="../home">Home</a>
-    <a routerLink="../contact">Contact</a>
-    <a routerLink="../about">About</a>
-    <a routerLink="../home">Login</a>
+    <a [routerLink]="['/home']" [routerLinkActive]="['active']" #one="routerLinkActive">Home</a>
+    <a [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact</a>
+    <a [routerLink]="['/about']" [routerLinkActive]="['active']">About</a>
+    <a [routerLink]="['/auth/log-reg']" [routerLinkActive]="['active']">Login</a>
   </div>
+  <!--    <span *ngIf="one.isActive">Something</span>-->
 </div>

@@ -1,0 +1,145 @@
+<span *ngIf="displayName; else elseBlock">
+  <!--  Start of the home page nr1 -->
+  <div class="main bg-color">
+    <img class="home-img">
+    <div class="intro-text-box inner">
+      <p class="intro-text1 fade-out-bck">Become the best </p>
+      <p class="intro-text1 fade-out-bck">version of yourself</p>
+      <p class="intro-text2 fade-out-bck2">Track your workouts with us and </p>
+      <p class="intro-text2 fade-out-bck2">keep your training progress sharp</p>
+      <button routerLink="../about" class="fade-out-bck2 button2"> JOIN NOW </button>
+    </div>
+
+<div [ngClass]="{'right-panel-active': isFavorite }" class="container inner slide-in-left" id="container">
+  <div class="form-container sign-up-container">
+    <form action="#">
+      <h1>Create Account</h1>
+      <div class="social-container">
+        <a href="#" class="social"><i class="fab fa-facebook-f"></i><img src="../../assets/images/social/facebook_96px.png" class="img-size"></a>
+        <a href="#" class="social"><i class="fab fa-google-plus-g"></i><img src="../../assets/images/social/google_plus_96px.png" class="img-size"></a>
+        <a href="#" class="social"><i class="fab fa-google-plus-g"></i><img src="../../assets/images/social/twitter_64px.png" class="img-size"></a>
+<!--        <a href="#" class="social"><i class="fab fa-linkedin-in"></i><img src="../../assets/images/social/linkedin_96px.png" class="img-size"></a>-->
+      </div>
+      <span>or use your email for registration</span>
+      <input type="text" placeholder="Name" />
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="Password" />
+      <button class="pointer button1">Sign Up</button>
+    </form>
+  </div>
+  <div class="form-container sign-in-container">
+    <form action="#">
+      <h1>Sign in</h1>
+      <div class="social-container">
+        <a href="#" class="social"><i class="fab fa-facebook-f"></i><img src="../../assets/images/social/facebook_96px.png" class="img-size"></a>
+        <a href="#" class="social"><i class="fab fa-google-plus-g"></i><img src="../../assets/images/social/google_plus_96px.png" class="img-size"></a>
+        <a href="#" class="social"><i class="fab fa-google-plus-g"></i><img src="../../assets/images/social/twitter_64px.png" class="img-size"></a>
+<!--        <a href="#" class="social"><i class="fab fa-linkedin-in"></i><img src="../../assets/images/social/linkedin_96px.png" class="img-size"></a>-->
+      </div>
+      <span>or use your account</span>
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="Password" />
+      <a href="#">Forgot your password?</a>
+      <button class="pointer button1">Sign In</button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>Hi there!</h1>
+        <p>Sign up with and start tracking your own and your friends gym progress</p>
+        <button class="ghost pointer button1" id="signIn" (click)="toggleClass()">Sign In</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Welcome back!</h1>
+        <p>Sign in and continue tracking your progress with us</p>
+        <button class="ghost pointer button1" id="signUp" (click)="toggleClass()">Sign Up</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="bottom-box">
+      <div class="bottom slide-out-bottom">
+
+        <div class="bottom-text-box">
+          <p> Track <br>exercises </p>
+          <hr>
+          <p class="">  </p>
+        </div>
+
+        <div class="bottom-text-box">
+          <p> See your <br>progress </p>
+          <hr>
+          <p class="">  </p>
+        </div>
+
+        <div class="bottom-text-box">
+          <p> See your <br>local ranking </p>
+          <hr>
+          <p class="">  </p>
+        </div >
+
+        <div class="bottom-text-box">
+          <p> Compete <br>with friends </p>
+          <hr>
+          <p class="">  </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--  End of the home page nr1 -->
+</span>
+
+
+
+
+
+
+<ng-template #elseBlock>
+  <span>
+  <!--  Start of the home page nr2 -->
+  <div class="main bg-color">
+    <img class="home-img text-focus-in">
+        Loading second way
+    <div class="intro-text-box">
+      <p class="intro-text1 slide-in-fwd-center">Become the best </p>
+      <p class="intro-text1 slide-in-fwd-center">version of yourself</p>
+      <p class="intro-text2 slide-in-fwd-center3">Track your workouts with us and </p>
+      <p class="intro-text2 slide-in-fwd-center3">keep your training progress sharp</p>
+      <button routerLink="../about" class="slide-in-fwd-center3"> JOIN NOW </button>
+    </div>
+    <div class="bottom-box">
+      <div class="bottom slide-in-bottom">
+
+        <div class="bottom-text-box">
+          <p> Track <br>exercises </p>
+          <hr>
+          <p class="">  </p>
+        </div>
+
+        <div class="bottom-text-box">
+          <p> See your <br>progress </p>
+          <hr>
+          <p class="">  </p>
+        </div>
+
+        <div class="bottom-text-box">
+          <p> See your <br>local ranking </p>
+          <hr>
+          <p class="">  </p>
+        </div >
+
+        <div class="bottom-text-box">
+          <p> Compete <br>with friends </p>
+          <hr>
+          <p class="">  </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+    <!--  End of the home page nr2 -->
+  </span>
+</ng-template>
