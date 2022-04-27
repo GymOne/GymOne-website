@@ -56,13 +56,16 @@ export class LogRegComponent implements OnInit {
     this._auth.login(loginDto).pipe(
       catchError(err => {
         if(err.error){
+          console.log('error catch')
           this.loginAlert = true;
         }
         return throwError(err);
       })
     )
       .subscribe(token =>{
-        if(token && token.jwt){
+        console.table(token)
+        if(token){
+          console.log('reaching back')
           this.loginForm.disable();
           this._router.navigate(['home']);
           this.loginForm.reset();
