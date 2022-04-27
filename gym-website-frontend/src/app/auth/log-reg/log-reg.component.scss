@@ -176,6 +176,7 @@
   margin: 0;
 }
 
+
 .slide-in-fwd-center {
   -webkit-animation: slide-in-fwd-center 2.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
   animation: slide-in-fwd-center 2.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
@@ -249,6 +250,10 @@
   p{
     margin: 1vw;
   }
+}
+
+.myfont{
+  font-family: fantasy;
 }
 
 hr{
