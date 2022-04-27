@@ -17,13 +17,12 @@ export class AuthGuard implements CanActivate {
     return this._auth.isLoggedIn$
       .pipe(
         map(token => {
-          if(token){
+          if(token && token.length>0){
             return true;
           }
           return this._router.parseUrl('/auth/login');
         })
       );
   }
-
 
 }
