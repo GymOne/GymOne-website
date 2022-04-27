@@ -12,7 +12,7 @@
 
 <div [ngClass]="{'right-panel-active': isFavorite }" class="container inner slide-in-left" id="container">
   <div class="form-container sign-up-container">
-    <form action="#">
+    <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
       <h1>Create Account</h1>
       <div class="social-container">
         <a href="#" class="social"><i class="fab fa-facebook-f"></i><img src="../../assets/images/social/facebook_96px.png" class="img-size"></a>
@@ -21,14 +21,24 @@
 <!--        <a href="#" class="social"><i class="fab fa-linkedin-in"></i><img src="../../assets/images/social/linkedin_96px.png" class="img-size"></a>-->
       </div>
       <span>or use your email for registration</span>
-      <input type="text" placeholder="Name" />
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Password" />
-      <button class="pointer button1">Sign Up</button>
+      <input type="text" placeholder="Name" class="form-control" formControlName="name" />
+        <div class ="alert alert-danger" *ngIf="registerName.dirty && !registerName.valid">
+          <div *ngIf='registerName.errors?.required'>Can't be empty!</div>
+        </div>
+      <input type="email" placeholder="Email" class="form-control" formControlName="email" />
+        <div class ="alert alert-danger" *ngIf="registerEmail.dirty && !registerEmail.valid">
+          <div *ngIf='registerEmail.errors?.required'>Can't be empty!</div>
+          <div *ngIf='registerEmail.errors?.email'>Email is required.</div>
+        </div>
+      <input type="password" placeholder="Password" class="form-control" formControlName="password" />
+        <div class ="alert alert-danger" *ngIf="registerPassword.dirty && !registerPassword.valid">
+          <div *ngIf='registerPassword.errors?.required'>Can't be empty!</div>
+        </div>
+      <button class="pointer button1" type="submit">Sign Up</button>
     </form>
   </div>
   <div class="form-container sign-in-container">
-    <form action="#">
+    <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
       <h1>Sign in</h1>
       <div class="social-container">
         <a href="#" class="social"><i class="fab fa-facebook-f"></i><img src="../../assets/images/social/facebook_96px.png" class="img-size"></a>
@@ -37,10 +47,17 @@
 <!--        <a href="#" class="social"><i class="fab fa-linkedin-in"></i><img src="../../assets/images/social/linkedin_96px.png" class="img-size"></a>-->
       </div>
       <span>or use your account</span>
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Password" />
+      <input type="email" placeholder="Email" class="form-control" formControlName="email" />
+        <div class ="alert alert-danger" *ngIf="loginEmail.dirty && !loginEmail.valid">
+          <div *ngIf='loginEmail.errors?.required'>Can't be empty!</div>
+          <div *ngIf='loginEmail.errors?.email'>Email is required.</div>
+        </div>
+      <input type="password" placeholder="Password" class="form-control" formControlName="password" />
+        <div class ="alert alert-danger" *ngIf="loginPassword.dirty && !loginPassword.valid">
+          <div *ngIf='loginPassword.errors?.required'>Can't be empty!</div>
+        </div>
       <a href="#">Forgot your password?</a>
-      <button class="pointer button1">Sign In</button>
+      <button class="pointer button1" type="submit">Sign In</button>
     </form>
   </div>
   <div class="overlay-container">
