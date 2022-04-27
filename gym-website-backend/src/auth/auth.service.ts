@@ -1,9 +1,9 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { UserService } from '../users/user.service';
 import { JwtService } from '@nestjs/jwt';
-import { ExistingUserDTO } from '../users/dto/existing-user.dto';
+import { LoginDto } from '../users/dto/login.dto';
 import { UserDetails } from '../users/user.details.interface';
-import { NewUserDTO } from '../users/dto/new-user.dto';
+import { RegisterDto } from '../users/dto/register.dto';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -13,11 +13,11 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async hashPassword(password: string): Promise<string> {
-    return await bcrypt.hash(password, 12);
+  async hashPassword(password: string, salt: any): Promise<string> {
+    return await bcrypt.hash(password, salt);
   }
 
-  async register(user: Readonly<NewUserDTO>): Promise<UserDetails | any> {
+  async register(user: Readonly<RegisterDto>): Promise<UserDetails | any> {
     const { name, email, password } = user;
 
     const existingUser = await this.userService.findByEmail(email);
@@ -28,10 +28,16 @@ export class AuthService {
         HttpStatus.CONFLICT,
       );
 
-    const hashedPassword = await this.hashPassword(password);
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await this.hashPassword(password, salt);
 
-    const newUser = await this.userService.create(name, email, hashedPassword);
-    return this.userService._getUserDetails(newUser);
+    const registerUser = await this.userService.create(
+      name,
+      email,
+      hashedPassword,
+      salt,
+    );
+    return this.userService._getUserDetails(registerUser);
   }
 
   async doesPasswordMatch(
@@ -60,9 +66,7 @@ export class AuthService {
     return this.userService._getUserDetails(user);
   }
 
-  async login(
-    existingUser: ExistingUserDTO,
-  ): Promise<{ token: string } | null> {
+  async login(existingUser: LoginDto): Promise<{ token: string } | null> {
     const { email, password } = existingUser;
     const user = await this.validateUser(email, password);
 
