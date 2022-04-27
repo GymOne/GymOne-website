@@ -8,8 +8,8 @@ import { HeaderComponent } from './header/header.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
+import {AuthGuard} from "./auth/guard/auth.guard";
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule
 
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
