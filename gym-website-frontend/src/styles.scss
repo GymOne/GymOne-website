@@ -2,3 +2,7 @@
 body{
   margin: 0;
 }
+@font-face {
+  font-family: "WaterBrush";
+  src: local("WaterBrush"), url(./assets/fonts/WaterBrush-Regular.ttf) format("truetype");
+}
