@@ -13,7 +13,8 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async hashPassword(password: string, salt: any): Promise<string> {
+  async hashPassword(password: string): Promise<string> {
+    const salt = await bcrypt.genSalt();
     return await bcrypt.hash(password, salt);
   }
 
@@ -27,15 +28,12 @@ export class AuthService {
         'An account with that email already exists!',
         HttpStatus.CONFLICT,
       );
-
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await this.hashPassword(password, salt);
+    const hashedPassword = await this.hashPassword(password);
 
     const registerUser = await this.userService.create(
       name,
       email,
       hashedPassword,
-      salt,
     );
     return this.userService._getUserDetails(registerUser);
   }

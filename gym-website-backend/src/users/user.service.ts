@@ -32,13 +32,11 @@ export class UserService {
     name: string,
     email: string,
     hashedPassword: string,
-    salt: string,
   ): Promise<UserDocument> {
     const newUser = new this.userModel({
       name,
       email,
       password: hashedPassword,
-      salt,
     });
     return newUser.save();
   }
