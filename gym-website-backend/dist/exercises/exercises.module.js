@@ -6,20 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.ExercisesModule = void 0;
 const common_1 = require("@nestjs/common");
-const user_module_1 = require("./users/user.module");
-const auth_module_1 = require("./auth/auth.module");
-const mongodb_module_1 = require("./infrastructure/mongo/mongodb.module");
-const exercises_module_1 = require("./exercises/exercises.module");
-let AppModule = class AppModule {
+const exercises_service_1 = require("./exercises.service");
+const exercises_controller_1 = require("./exercises.controller");
+const exercise_provider_1 = require("../infrastructure/mongo/exercise.provider");
+const mongodb_module_1 = require("../infrastructure/mongo/mongodb.module");
+let ExercisesModule = class ExercisesModule {
 };
-AppModule = __decorate([
+ExercisesModule = __decorate([
     (0, common_1.Module)({
-        imports: [auth_module_1.AuthModule, user_module_1.UserModule, mongodb_module_1.MongodbModule, exercises_module_1.ExercisesModule],
-        controllers: [],
-        providers: [],
+        imports: [mongodb_module_1.MongodbModule],
+        controllers: [exercises_controller_1.ExercisesController],
+        providers: [exercises_service_1.ExercisesService, ...exercise_provider_1.ExerciseProvider],
     })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], ExercisesModule);
+exports.ExercisesModule = ExercisesModule;
+//# sourceMappingURL=exercises.module.js.map
