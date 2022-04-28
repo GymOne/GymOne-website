@@ -10,15 +10,14 @@ import {
   Put,
   Res,
 } from '@nestjs/common';
-import { User } from './user.schema';
-import { UserDetails } from './user.details.interface';
+import { User } from './entities/user.entity';
 
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
 
   @Get(':id')
-  getUser(@Param('id') id: string): Promise<UserDetails | null> {
+  getUser(@Param('id') id: string): Promise<User | null> {
     return this.userService.findById(id);
   }
 }

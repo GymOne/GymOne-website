@@ -1,28 +1,25 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { User, UserDocument } from './user.schema';
+import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
-import { UserDetails } from './user.details.interface';
+import { User } from './entities/user.entity';
 
 @Injectable()
 export class UserService {
-  constructor(
-    @InjectModel('User') private readonly userModel: Model<UserDocument>,
-  ) {}
+  constructor(@Inject('USER_MODEL') private readonly userModel: Model<User>) {}
 
-  _getUserDetails(user: UserDocument): UserDetails {
+  async _getUserDetails(user: User): Promise<User> {
     return {
-      id: user._id,
+      id: user.id,
       name: user.name,
       email: user.email,
+      password: user.password,
     };
   }
 
-  async findByEmail(email: string): Promise<UserDocument | null> {
+  async findByEmail(email: string): Promise<User | null> {
     return this.userModel.findOne({ email }).exec();
   }
 
-  async findById(id: string): Promise<UserDetails | null> {
+  async findById(id: string): Promise<User | null> {
     const user = await this.userModel.findById(id).exec();
     if (!user) return null;
     return this._getUserDetails(user);
@@ -32,7 +29,7 @@ export class UserService {
     name: string,
     email: string,
     hashedPassword: string,
-  ): Promise<UserDocument> {
+  ): Promise<User> {
     const newUser = new this.userModel({
       name,
       email,
@@ -41,25 +38,3 @@ export class UserService {
     return newUser.save();
   }
 }
-
-// export type User = any;
-//
-// @Injectable()
-// export class UserService {
-//   private readonly user = [
-//     {
-//       userId: 1,
-//       username: 'user',
-//       password: 'user123',
-//     },
-//     {
-//       userId: 2,
-//       username: 'mario',
-//       password: 'mario123',
-//     },
-//   ];
-//
-//   async findOne(username: string): Promise<User | undefined> {
-//     return this.user.find((user) => user.username === username);
-//   }
-// }

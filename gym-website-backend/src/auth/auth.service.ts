@@ -2,9 +2,9 @@ import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { UserService } from '../users/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from '../users/dto/login.dto';
-import { UserDetails } from '../users/user.details.interface';
 import { RegisterDto } from '../users/dto/register.dto';
 import * as bcrypt from 'bcrypt';
+import { User } from '../users/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -18,7 +18,7 @@ export class AuthService {
     return await bcrypt.hash(password, salt);
   }
 
-  async register(user: Readonly<RegisterDto>): Promise<UserDetails | any> {
+  async register(user: Readonly<RegisterDto>): Promise<User | any> {
     const { name, email, password } = user;
 
     const existingUser = await this.userService.findByEmail(email);
@@ -45,10 +45,7 @@ export class AuthService {
     return bcrypt.compare(password, hashedPassword);
   }
 
-  async validateUser(
-    email: string,
-    password: string,
-  ): Promise<UserDetails | null> {
+  async validateUser(email: string, password: string): Promise<User | null> {
     const user = await this.userService.findByEmail(email);
     const doesUserExist = !!user;
 
