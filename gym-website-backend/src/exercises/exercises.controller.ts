@@ -20,17 +20,17 @@ export class ExercisesController {
   }
 
   @Get('findByUserId:userId')
-  findAllByUserId(@Param('userId') userId: string) {
+  findAllByUserId(@Param('id') userId: string) {
     return this.exercisesService.findAllByUserId(userId);
   }
 
   @Get('findById:id')
   findOneById(@Param('id') id: string) {
-    return this.exercisesService.findOne(id);
+    return this.exercisesService.findOneById(id);
   }
 
   @Delete('deleteById:id')
-  remove(@Param('id') id: string) {
-    return this.exercisesService.remove(id);
+  removeById(@Param('id') id: string) {
+    return this.exercisesService.removeById(id);
   }
 }

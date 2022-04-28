@@ -19,10 +19,10 @@ export class ExercisesService {
     return this.exerciseModel.find({ userId: userId });
   }
 
-  findOne(id: string) {
+  findOneById(id: string) {
     return this.exerciseModel.findById(id);
   }
-  remove(id: string) {
+  removeById(id: string) {
     return this.exerciseModel.findByIdAndDelete(id);
   }
 }
