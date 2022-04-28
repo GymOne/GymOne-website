@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+body{
+  background-color: #f3f5f9;
+}
+
+.wrapper{
+  display: flex;
+  position: relative;
+}
+
+.wrapper .sidebar{
+  width: 18vw;
+  //height: 80%;
+  background: #133a5e;
+  //padding: 0.5vw 2vw;
+  padding-left: 3vw;
+  position: fixed;
+  margin-top: 13vw;
+  margin-left: -1vw;
+  //margin-bottom: 10vw;
+  border-radius: 1vw;
+}
+
+.wrapper .sidebar h2{
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 1.2vw;
+  margin-bottom: 30px;
+}
+
+.wrapper .sidebar ul li{
+  border-bottom: 1px solid #bdb8d7;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.wrapper .sidebar ul li a{
+  color: ghostwhite;
+  display: block;
+  padding-left: 10px;
+}
+
+.wrapper .sidebar ul li a .fas{
+  width: 25px;
+}
+
+.wrapper .sidebar ul li:hover{
+  background-color: #004b91;
+}
+
+.wrapper .sidebar ul li:hover a{
+  color: #d0d0d0;
+}
+
+.wrapper .sidebar .social_media{
+  position: absolute;
+  bottom: 0;
+  display: flex;
+}
+
+.wrapper .main_content{
+  width: 100%;
+  margin-left: 200px;
+}
+
+.wrapper .main_content .info{
+  margin: 20px;
+  color: ghostwhite;
+  line-height: 25px;
+}
+
+.wrapper .main_content .info div{
+  margin-bottom: 20px;
+}
+
+.img-white{
+  filter: brightness(0) invert(1);
+  width: 1vw;
+  height: 1vw;
+}
+
+.img-social{
+  width: 48px;
+  height: 48px;
+}
+
+.social_media a{
+  margin: 0 8px;
+}
+
+.img-logo{
+  width: 35px;
+  height: 35px;
+}
+
+.white-text{
+  color: #fff;
+}
+
+.bigger-font{
+  font-size: 2vw;
+}
+
+.item{
+  align-items: center;
+  display: flex;
+
+}
+
+.img-space{
+  margin-right: 10px;
+}
+
+.logo-text{
+  color: white;
+}
+
+.user{
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-height: 500px){
+  .social_media{
+    display: none !important;
+  }
+}
+
+.sub-padding{
+  padding-left: 2.5vw;
+}
+
+a{
+  padding: 1vw;
+  //margin-left: 15px;
+}
+
+.no-margin-left{
+  margin-left: 0px;
+}
+
+.acc-bar{
+  margin: 0px;
+  padding: 10px;
+}
+
+.menu-name{
+  padding: 15px;
+}
+
