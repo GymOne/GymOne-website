@@ -7,9 +7,11 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {AuthGuard} from "./auth/guard/auth.guard";
+import { UserNavComponent } from './user-nav/user-nav.component';
+import { TrackingComponent } from './tracking/tracking.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +20,15 @@ import {AuthGuard} from "./auth/guard/auth.guard";
     HeaderComponent,
     ContactComponent,
     AboutComponent,
+    UserNavComponent,
+    TrackingComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
 
   ],
   providers: [AuthGuard],
