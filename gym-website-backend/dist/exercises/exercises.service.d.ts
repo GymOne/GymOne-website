@@ -13,19 +13,13 @@ export declare class ExercisesService {
     private readonly exerciseModel;
     constructor(exerciseModel: Model<Exercise>);
     create(createExerciseDto: CreateExerciseDto): Promise<Exercise>;
-    findAllByUserId(userId: string): import("mongoose").Query<(import("mongoose").Document<unknown, any, Exercise> & Exercise & {
+    findAllByUserId(userId: string): Promise<(import("mongoose").Document<unknown, any, Exercise> & Exercise & {
         _id: import("mongoose").Types.ObjectId;
-    })[], import("mongoose").Document<unknown, any, Exercise> & Exercise & {
+    })[]>;
+    findOneById(id: string): Promise<import("mongoose").Document<unknown, any, Exercise> & Exercise & {
         _id: import("mongoose").Types.ObjectId;
-    }, {}, Exercise>;
-    findOne(id: string): import("mongoose").Query<import("mongoose").Document<unknown, any, Exercise> & Exercise & {
+    }>;
+    removeById(id: string): Promise<import("mongoose").Document<unknown, any, Exercise> & Exercise & {
         _id: import("mongoose").Types.ObjectId;
-    }, import("mongoose").Document<unknown, any, Exercise> & Exercise & {
-        _id: import("mongoose").Types.ObjectId;
-    }, {}, Exercise>;
-    remove(id: string): import("mongoose").Query<import("mongoose").Document<unknown, any, Exercise> & Exercise & {
-        _id: import("mongoose").Types.ObjectId;
-    }, import("mongoose").Document<unknown, any, Exercise> & Exercise & {
-        _id: import("mongoose").Types.ObjectId;
-    }, {}, Exercise>;
+    }>;
 }

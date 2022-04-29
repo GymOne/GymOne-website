@@ -10,19 +10,19 @@ export class ExercisesService {
   ) {}
 
   async create(createExerciseDto: CreateExerciseDto): Promise<Exercise> {
-    return this.exerciseModel.create({
+    return await this.exerciseModel.create({
       name: createExerciseDto.name,
       userId: createExerciseDto.userId,
     });
   }
-  findAllByUserId(userId: string) {
-    return this.exerciseModel.find({ userId: userId });
+  async findAllByUserId(userId: string) {
+    return await this.exerciseModel.find({ userId: userId }).exec();
   }
 
-  findOneById(id: string) {
-    return this.exerciseModel.findById(id);
+  async findOneById(id: string) {
+    return await this.exerciseModel.findById(id).exec();
   }
-  removeById(id: string) {
-    return this.exerciseModel.findByIdAndDelete(id);
+  async removeById(id: string) {
+    return await this.exerciseModel.findByIdAndDelete(id).exec();
   }
 }

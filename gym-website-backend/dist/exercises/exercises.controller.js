@@ -27,10 +27,10 @@ let ExercisesController = class ExercisesController {
         return this.exercisesService.findAllByUserId(userId);
     }
     findOneById(id) {
-        return this.exercisesService.findOne(id);
+        return this.exercisesService.findOneById(id);
     }
-    remove(id) {
-        return this.exercisesService.remove(id);
+    removeById(id) {
+        return this.exercisesService.removeById(id);
     }
 };
 __decorate([
@@ -41,28 +41,28 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ExercisesController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)('findByUserId:userId'),
-    __param(0, (0, common_1.Param)('userId')),
+    (0, common_1.Get)('findByUserId/:userId'),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ExercisesController.prototype, "findAllByUserId", null);
 __decorate([
-    (0, common_1.Get)('findById:id'),
+    (0, common_1.Get)('findById/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ExercisesController.prototype, "findOneById", null);
 __decorate([
-    (0, common_1.Delete)('deleteById:id'),
+    (0, common_1.Delete)('deleteById/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], ExercisesController.prototype, "remove", null);
+], ExercisesController.prototype, "removeById", null);
 ExercisesController = __decorate([
-    (0, common_1.Controller)('exercises'),
+    (0, common_1.Controller)('exercise'),
     __metadata("design:paramtypes", [exercises_service_1.ExercisesService])
 ], ExercisesController);
 exports.ExercisesController = ExercisesController;
