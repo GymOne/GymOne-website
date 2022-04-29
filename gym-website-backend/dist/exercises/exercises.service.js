@@ -20,19 +20,19 @@ let ExercisesService = class ExercisesService {
         this.exerciseModel = exerciseModel;
     }
     async create(createExerciseDto) {
-        return this.exerciseModel.create({
+        return await this.exerciseModel.create({
             name: createExerciseDto.name,
             userId: createExerciseDto.userId,
         });
     }
-    findAllByUserId(userId) {
-        return this.exerciseModel.find({ userId: userId });
+    async findAllByUserId(userId) {
+        return await this.exerciseModel.find({ userId: userId }).exec();
     }
-    findOne(id) {
-        return this.exerciseModel.findById(id);
+    async findOneById(id) {
+        return await this.exerciseModel.findById(id).exec();
     }
-    remove(id) {
-        return this.exerciseModel.findByIdAndDelete(id);
+    async removeById(id) {
+        return await this.exerciseModel.findByIdAndDelete(id).exec();
     }
 };
 ExercisesService = __decorate([

@@ -12,11 +12,12 @@ const user_module_1 = require("./users/user.module");
 const auth_module_1 = require("./auth/auth.module");
 const mongodb_module_1 = require("./infrastructure/mongo/mongodb.module");
 const exercises_module_1 = require("./exercises/exercises.module");
+const workout_module_1 = require("./workout/workout.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [auth_module_1.AuthModule, user_module_1.UserModule, mongodb_module_1.MongodbModule, exercises_module_1.ExercisesModule],
+        imports: [auth_module_1.AuthModule, user_module_1.UserModule, mongodb_module_1.MongodbModule, exercises_module_1.ExercisesModule, workout_module_1.WorkoutModule],
         controllers: [],
         providers: [],
     })
