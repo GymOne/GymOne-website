@@ -6,3 +6,6 @@ body{
   font-family: "WaterBrush";
   src: local("WaterBrush"), url(./assets/fonts/WaterBrush-Regular.ttf) format("truetype");
 }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

@@ -12,6 +12,11 @@ import {HttpClientModule} from "@angular/common/http";
 import {AuthGuard} from "./auth/guard/auth.guard";
 import { UserNavComponent } from './user-nav/user-nav.component';
 import { TrackingComponent } from './tracking/tracking.component';
+import {NgxsModule} from "@ngxs/store";
+import {environment} from "../environments/environment";
+import {UserAuthState} from "./shared/auth/user.state";
+import {NgxsStoragePluginModule} from "@ngxs/storage-plugin";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,7 +33,14 @@ import { TrackingComponent } from './tracking/tracking.component';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxsModule.forRoot([UserAuthState], {
+      developmentMode: !environment.production
+    }),
+    NgxsStoragePluginModule.forRoot({
+      key: ['UserAuth']
+    }),
+    NgbModule,
 
   ],
   providers: [AuthGuard],
