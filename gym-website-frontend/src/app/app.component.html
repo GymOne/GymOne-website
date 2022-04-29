@@ -1,5 +1,5 @@
 <app-header></app-header>
-<app-user-nav></app-user-nav>
+<app-user-nav *ngIf="currentU"></app-user-nav>
 <div class="main">
   <router-outlet></router-outlet>
 </div>

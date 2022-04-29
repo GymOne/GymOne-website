@@ -3,9 +3,12 @@ import {Router} from "@angular/router";
 import {catchError, first} from "rxjs/operators";
 import {RegisterDto} from "../shared/register.dto";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {throwError} from "rxjs";
+import {Observable, throwError} from "rxjs";
 import {LoginDto} from "../shared/login.dto";
 import {AuthService} from "../shared/auth.service";
+import {Select, Store} from "@ngxs/store";
+import {Login} from "../../shared/auth/user.action";
+import {UserAuthState} from "../../shared/auth/user.state";
 
 @Component({
   selector: 'app-log-reg',
@@ -23,7 +26,24 @@ export class LogRegComponent implements OnInit {
   submitted:boolean = false;
 
 
-  constructor(private formBuilder: FormBuilder, private _router:Router,private _auth:AuthService) { }
+  // @ts-ignore
+  @Select(UserAuthState.getUser) currentUser: Observable<string>;
+
+
+  constructor(private formBuilder: FormBuilder, private _router:Router, private store: Store, private _auth: AuthService) {
+    // @ts-ignore
+    this.currentUser.subscribe(
+      (data) => {
+        if (data) {
+          console.log('reaching back')
+          this.loginForm.disable();
+          this._router.navigate(['home']);
+          this.loginForm.reset();
+          this.loginForm.enable();
+          this.loginAlert = false;
+        }
+      });
+  }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -52,27 +72,7 @@ export class LogRegComponent implements OnInit {
     }
     const loginDto = this.loginForm.value as LoginDto;
 
-
-    this._auth.login(loginDto).pipe(
-      catchError(err => {
-        if(err.error){
-          console.log('error catch')
-          this.loginAlert = true;
-        }
-        return throwError(err);
-      })
-    )
-      .subscribe(token =>{
-        console.table(token)
-        if(token){
-          console.log('reaching back')
-          this.loginForm.disable();
-          this._router.navigate(['home']);
-          this.loginForm.reset();
-          this.loginForm.enable();
-          this.loginAlert = false;
-        }
-      });
+    this.store.dispatch(new Login(loginDto));
   }
 
   closeLoginAlert() {
@@ -106,7 +106,6 @@ export class LogRegComponent implements OnInit {
     //   return
     // }
     const registerDto = this.registerForm.value as RegisterDto;
-
     this._auth.register(registerDto)
       .pipe(first())
       .subscribe({
