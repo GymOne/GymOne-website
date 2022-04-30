@@ -9,6 +9,7 @@ import {Observable} from "rxjs";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
   title = 'gym-website-frontend';
   // @ts-ignore
   @Select(UserAuthState.getUser) currentUser: Observable<string>;

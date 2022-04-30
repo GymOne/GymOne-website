@@ -37,7 +37,7 @@ export class LogRegComponent implements OnInit {
         if (data) {
           console.log('reaching back')
           this.loginForm.disable();
-          this._router.navigate(['home']);
+          this._router.navigate(['tracking']);
           this.loginForm.reset();
           this.loginForm.enable();
           this.loginAlert = false;
@@ -107,17 +107,17 @@ export class LogRegComponent implements OnInit {
     // }
     const registerDto = this.registerForm.value as RegisterDto;
     this._auth.register(registerDto)
-      .pipe(first())
-      .subscribe({
-        next: () => {
-          this.submitted = true;
-          this.registerAlert=true;
-        },
-        error: error => {
-          this.submitted = true;
-          this.registerAlert=false;
-        },
-      })
+      .pipe(first()).subscribe(
+      (data) => {
+        if (data) {
+          console.log('reaching back')
+          this.registerForm.disable();
+          this._router.navigate(['tracking']);
+          this.registerForm.reset();
+          this.registerForm.enable();
+          this.registerAlert = false;
+        }
+      });
   }
 
   closeRegisterAlert(){
