@@ -17,7 +17,10 @@ export class WorkoutController {
   constructor(private readonly workoutService: WorkoutService) {}
 
   @Get('session/:userId/:date')
-  GetWorkoutSession(@Param('userId') userId: string,@Param('date')date: Date ) {
+  GetWorkoutSession(
+    @Param('userId') userId: string,
+    @Param('date') date: Date,
+  ) {
     return this.workoutService.getWorkoutSession(userId, date);
   }
 
@@ -30,9 +33,18 @@ export class WorkoutController {
     );
   }
 
+  @Delete('exercise/set/deleteById/:id')
+  removeExerciseSetById(@Param('id') id: string) {
+    return this.workoutService.removeExerciseSetById(id);
+  }
   @Post('exercise')
-  WorkoutExercise(@Body() createWorkoutExerciseDto: CreateWorkoutExerciseDto) {
+  CreateWorkoutExercise(@Body() createWorkoutExerciseDto: CreateWorkoutExerciseDto) {
     return this.workoutService.createWorkoutExercise(createWorkoutExerciseDto);
+  }
+
+  @Delete('exercise/deleteById/:id')
+  RemoveExerciseById(@Param('id') id: string) {
+    return this.workoutService.removeExerciseById(id);
   }
 
   @Post('session')

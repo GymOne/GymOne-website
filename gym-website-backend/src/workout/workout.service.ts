@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { CreateWorkoutSessionDto } from './dto/create-workout-session.dto';
 import { WorkoutSession } from './entities/workout.session.entity';
 import { CreateWorkoutExerciseDto } from './dto/create-workout-exercise.dto';
+import { exec } from 'child_process';
 
 @Injectable()
 export class WorkoutService {
@@ -60,4 +61,37 @@ export class WorkoutService {
       })
       .exec();
   }
+
+  async removeExerciseById(id: string) {
+    return await this.workoutModel
+      .updateOne({ 'workouts._id': id }, { $pull: { workouts: { _id: id } } })
+      .exec();
+  }
+
+  async removeExerciseSetById(id: string) {
+    return await this.workoutModel
+      .updateOne(
+        { 'workouts.sets._id': id },
+        { $pull: { 'workouts.$.sets': { _id: id } } },
+      )
+      .exec();
+  }
+
+  /*  async createWorkoutExerciseSet(
+    createWorkoutExerciseSetDto: CreateWorkoutExerciseSetDto,
+  ) {
+    return await this.workoutModel
+      .findOneAndUpdate(
+        { 'workouts._id': createWorkoutExerciseSetDto.workoutExerciseId },
+        {
+          $push: {
+            'workouts.$.sets': {
+              weight: createWorkoutExerciseSetDto.weight,
+              reps: createWorkoutExerciseSetDto.reps,
+            },
+          },
+        },
+      )
+      .exec();
+  }*/
 }
