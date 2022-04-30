@@ -43,9 +43,6 @@ export class AuthService {
     return of(true).pipe(take(1));
   }
 
-  getToken():string | null {
-    return localStorage.getItem(jwtToken);
-  }
 
   // getUserEmail():string{
   //   var jsonObject = this.getPayload();
@@ -90,6 +87,11 @@ export class AuthService {
   //
   //   return JSON.parse(jsonPayload);
   // };
+
+  getToken():string | null {
+    return localStorage.getItem(jwtToken);
+  }
+
 
 
 }

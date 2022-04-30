@@ -20,7 +20,7 @@ export class ExercisesController {
   }
 
   @Get('findByUserId/:userId')
-  findAllByUserId(@Param('id') userId: string) {
+  findAllByUserId(@Param('userId') userId: string) {
     return this.exercisesService.findAllByUserId(userId);
   }
 

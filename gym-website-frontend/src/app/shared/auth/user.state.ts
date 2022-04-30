@@ -27,7 +27,7 @@ export class UserAuthState {
   }
 
   @Action(Login)
-  loginAdmin({getState, setState}: StateContext<UserStateModel>, {loginDto}: Login): any {
+  loginUser({getState, setState}: StateContext<UserStateModel>, {loginDto}: Login): any {
     return this.authService.loginWithEmail(loginDto).then((result: any) => {
       console.log(result);
         const state = getState();
