@@ -55,7 +55,7 @@ export class WorkoutService {
 
   async getWorkoutSession(userId: string, date: Date) {
     return await this.workoutModel
-      .find({
+      .findOne({
         userId: userId,
         date: date,
       })
