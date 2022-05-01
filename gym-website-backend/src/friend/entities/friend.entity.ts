@@ -1,4 +1,4 @@
-export class Friend {
+export class FriendEntity {
   senderId: number;
   receiverId: number;
   isAccepted: boolean;

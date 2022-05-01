@@ -1,11 +1,11 @@
 import { Connection } from 'mongoose';
-import { FriendScema } from './schemas/friend.scema';
+import { FriendRequestSchema } from './schemas/friend-request.schema';
 
-export const UserProvider = [
+export const FriendProvider = [
   {
     provide: 'FRIEND_MODEL',
     useFactory: (connection: Connection) =>
-      connection.model('Friend', FriendScema),
+      connection.model('Friend', FriendRequestSchema),
     inject: ['DATABASE_CONNECTION'],
   },
 ];
