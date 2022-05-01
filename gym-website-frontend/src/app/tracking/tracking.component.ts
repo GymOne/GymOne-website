@@ -37,27 +37,45 @@ export class TrackingComponent implements OnInit {
 
   onValueChanged() {
     this.loadWorkout()
-    console.log("exercises")
-    console.log(this.exercises)
   }
 
   loadWorkout():void{
     var date = this.inputDate as Date;
-    this.workoutService.getWorkoutSession('62691b6f5f4429619d131392',date).subscribe(value => {
-        this.workoutSession = value;
-        console.log(value)
+    this.workoutService.getWorkoutSession('6268ec483d068e67487af32f',date).subscribe(value => {
+      this.workoutSession = value;
       },
       err => {
-        console.log(err );
       })
   }
   loadExercises():void{
-    this.workoutService.getExercises('62691b6f5f4429619d131392').subscribe(value => {
+    this.workoutService.getExercises('6268ec483d068e67487af32f').subscribe(value => {
+      this.exercises = [];
         this.exercises = value;
-        console.log(this.exercises)
       },
       err => {
-        console.log(err );
       })
   }
+
+  deleteExerciseById(exerciseId:string){
+    this.workoutService.deleteWorkoutExercises(exerciseId).subscribe(value => {
+      this.loadWorkout();
+      this.loadExercises();
+    });
+  }
+
+  addExerciseToSession(exerciseId: string) {
+    if(!this.workoutSession){
+      this.workoutService.createWorkoutSession('6268ec483d068e67487af32f',this.inputDate as Date).subscribe(createdSession => {
+        this.workoutSession = createdSession;
+        console.log(createdSession._id)
+        this.workoutService.createExerciseInSession(this.workoutSession._id,exerciseId).subscribe();
+      });
+    }else{
+      this.workoutService.createExerciseInSession(this.workoutSession._id,exerciseId).subscribe();
+    }
+
+    //add exercise
+  }
+
+
 }
