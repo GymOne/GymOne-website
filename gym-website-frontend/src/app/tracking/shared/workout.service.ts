@@ -20,10 +20,16 @@ export class WorkoutService{
   public deleteWorkoutExercises(exerciseId:string){
     return this._http.delete(`http://localhost:3000/exercise/deleteById/${exerciseId}`);
   }
+
+  public createWorkoutSession(userId:string,date:Date):Observable<workoutSession>{
+    return this._http.post<workoutSession>(`http://localhost:3000/workout/session`,{userId: userId,date:date});
+  }
+
+  public createExerciseInSession(sessionId: string, exerciseId:string){
+    return this._http.post('http://localhost:3000/workout/exercise',{workoutSessionId:sessionId,exerciseId:exerciseId});
+  }
+
   public getExercises(userId:string):Observable<exercise[]>{
     return this._http.get<exercise[]>(`http://localhost:3000/exercise/findByUserId/${userId}`);
-  }
-  public addExerciseToSession(sessionId: string, exerciseId:string){
-    return this._http.post('http://localhost:3000/workout/exercise',{workoutSessionId:sessionId,exerciseId:exerciseId});
   }
 }
