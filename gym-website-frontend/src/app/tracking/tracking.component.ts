@@ -37,27 +37,35 @@ export class TrackingComponent implements OnInit {
 
   onValueChanged() {
     this.loadWorkout()
-    console.log("exercises")
-    console.log(this.exercises)
   }
 
   loadWorkout():void{
     var date = this.inputDate as Date;
     this.workoutService.getWorkoutSession('62691b6f5f4429619d131392',date).subscribe(value => {
-        this.workoutSession = value;
-        console.log(value)
+      this.workoutSession = value;
       },
       err => {
-        console.log(err );
       })
   }
   loadExercises():void{
     this.workoutService.getExercises('62691b6f5f4429619d131392').subscribe(value => {
+      this.exercises = [];
         this.exercises = value;
-        console.log(this.exercises)
       },
       err => {
-        console.log(err );
       })
+  }
+
+  deleteExerciseById(exerciseId:string){
+    this.workoutService.deleteWorkoutExercises(exerciseId).subscribe(value => {
+      this.loadWorkout();
+      this.loadExercises();
+    });
+  }
+
+  addExerciseToSession(_id: string) {
+
+    if(this.workoutSession){
+    }
   }
 }
