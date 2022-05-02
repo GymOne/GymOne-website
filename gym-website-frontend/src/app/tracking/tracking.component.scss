@@ -36,9 +36,11 @@
 
 .overflow-down{
   float:left;
-  width:500px;
+  width:30vw;
   overflow-y: auto;
-  height: 300px;
+  height: 24vw;
+  border-width: 1px;
+  border-color: #333333;
 }
 
 * {
@@ -98,5 +100,10 @@ span {
 
 .exercises-list li{
   list-style-type: none;
+}
+
+.session-container{
+  display: flex;
+  flex-direction: column;
 }
 

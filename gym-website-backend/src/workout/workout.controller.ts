@@ -38,7 +38,9 @@ export class WorkoutController {
     return this.workoutService.removeExerciseSetById(id);
   }
   @Post('exercise')
-  CreateWorkoutExercise(@Body() createWorkoutExerciseDto: CreateWorkoutExerciseDto) {
+  CreateWorkoutExercise(
+    @Body() createWorkoutExerciseDto: CreateWorkoutExerciseDto,
+  ) {
     return this.workoutService.createWorkoutExercise(createWorkoutExerciseDto);
   }
 
@@ -51,6 +53,7 @@ export class WorkoutController {
   CreateWorkoutSession(
     @Body() createWorkoutSessionDto: CreateWorkoutSessionDto,
   ) {
+    console.log(createWorkoutSessionDto);
     return this.workoutService.createWorkoutSession(createWorkoutSessionDto);
   }
 }

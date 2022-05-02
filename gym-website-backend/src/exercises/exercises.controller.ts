@@ -16,6 +16,7 @@ export class ExercisesController {
 
   @Post('create')
   create(@Body() createExerciseDto: CreateExerciseDto) {
+    console.log(createExerciseDto);
     return this.exercisesService.create(createExerciseDto);
   }
 

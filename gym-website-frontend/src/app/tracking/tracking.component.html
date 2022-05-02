@@ -12,16 +12,14 @@
           <input type="date" [(ngModel)]="inputDate" (ngModelChange)="onValueChanged()">
           <button> --> </button>
       </div>
+      <div class="session-container" >
+        <button *ngFor="let exercise in workoutSession.workouts.WorkoutExercises"></button>
+      </div>
+
+
 <!--      ----- 1st column -----       -->
 
-<!--&lt;!&ndash;      -&#45;&#45;&#45;&#45; 2nd column -&#45;&#45;&#45;&#45;       &ndash;&gt;-->
-<!--      <div class="column" style="background-color:#bbb;">-->
-<!--        <h2>Selected exercise</h2>-->
-<!--          <p> - No exercise selected - </p>-->
-<!--      </div>-->
-<!--&lt;!&ndash;      -&#45;&#45;&#45;&#45; 2nd column -&#45;&#45;&#45;&#45;       &ndash;&gt;-->
-
-<!--      ----- 3rd column -----       -->
+<!--      ----- 2rd column -----       -->
       <div class="column" style="background-color:#aaa;">
         <h2>All exercises</h2>
           <div class="side-by-side">
@@ -29,7 +27,22 @@
               <input type="text" placeholder="Search.." name="search">
               <button type="submit"><i class="">🔍</i></button>
             </form>
-            <button>➕</button>
+            <button (click)="open(content, true)">➕</button>
+
+
+            <ng-template #content let-c="close" let-d="dismiss">
+              <div class="modal-header">
+                <h2 *ngIf="isAddMode">Create new exercise</h2>
+                <h2 *ngIf="!isAddMode">Edit exercise</h2>
+                <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+              </div>
+              <div class="modal-body">
+                <input type="text" [(ngModel)]="name">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="createExercise()">Save</button>
+              </div>
+            </ng-template>
 
 <!--            <span routerLink="">-->
 <!--            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">-->
@@ -45,7 +58,7 @@
                     <tr *ngFor="let exercise of exercises">
                       <td>{{exercise.name}}</td>
                       <td>
-                        <svg routerLink="/admin/edit/"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                        <svg (click)="open(content, false)"  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                           <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                         </svg>
                         <svg (click)="deleteExerciseById(exercise._id)" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
@@ -62,7 +75,7 @@
           </div>
       </div>
 
-<!--      ----- 3rd column -----       -->
+<!--      ----- 2rd column -----       -->
 
     </div>
   </div>

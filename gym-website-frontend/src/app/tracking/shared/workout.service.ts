@@ -32,4 +32,14 @@ export class WorkoutService{
   public getExercises(userId:string):Observable<exercise[]>{
     return this._http.get<exercise[]>(`http://localhost:3000/exercise/findByUserId/${userId}`);
   }
+
+  public createExercise(userId:string, name:string){
+    console.log(name)
+    return this._http.post(`http://localhost:3000/exercise/create`, {userId:userId,exerciseName:name});
+  }
+
+  // public editExercise(userId:string, name:string){
+  //   return this._http.post(`http://localhost:3000/exercise/create/`, {userId,name});
+  // }
+
 }

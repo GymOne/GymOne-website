@@ -17,8 +17,6 @@ import {environment} from "../environments/environment";
 import {UserAuthState} from "./shared/auth/user.state";
 import {NgxsStoragePluginModule} from "@ngxs/storage-plugin";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {FriendModule} from "./friend/friend.module";
-// import {WorkoutService} from "./tracking/shared/workout.service";
 
 @NgModule({
   declarations: [
@@ -36,6 +34,7 @@ import {FriendModule} from "./friend/friend.module";
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    NgbModule,
     NgxsModule.forRoot([UserAuthState], {
       developmentMode: !environment.production
     }),
