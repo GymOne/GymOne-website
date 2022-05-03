@@ -17,7 +17,7 @@ export class WorkoutService{
   public getWorkoutSession(userId:string,date:Date):Observable<workoutSession>{
     return this._http.get<workoutSession>(`http://localhost:3000/workout/session/${userId}/${date}`);
   }
-  public deleteWorkoutExercises(exerciseId:string){
+  public deleteExercises(exerciseId:string){
     return this._http.delete(`http://localhost:3000/exercise/deleteById/${exerciseId}`);
   }
 
@@ -34,12 +34,18 @@ export class WorkoutService{
   }
 
   public createExercise(userId:string, name:string){
-    console.log(name)
-    return this._http.post(`http://localhost:3000/exercise/create`, {userId:userId,exerciseName:name});
+    return this._http.post(`http://localhost:3000/exercise/create`, {userId:userId,name:name});
   }
 
-  // public editExercise(userId:string, name:string){
-  //   return this._http.post(`http://localhost:3000/exercise/create/`, {userId,name});
-  // }
+  public createExerciseSet(workoutExerciseId: string, weight: string, reps: string){
+    return this._http.post(`http://localhost:3000/workout/exercise/set`,{workoutExerciseId:workoutExerciseId, weight:weight, reps:reps})
+  }
 
+  public deleteWorkoutExerciseSetById(_id:string){
+    return this._http.delete(`http://localhost:3000/workout/exercise/set/deleteById/${_id}`);
+  }
+
+  public deleteWorkoutExercises(exerciseId:string){
+    return this._http.delete(`http://localhost:3000/workout/exercise/deleteById/${exerciseId}`);
+  }
 }

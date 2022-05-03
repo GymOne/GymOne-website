@@ -17,8 +17,11 @@ export class TrackingComponent implements OnInit {
 
   name = ''
 
+  weight = ''
+  reps = ''
+
   workoutSession: workoutSession | undefined;
-  exercises: exercise[] | undefined;
+  exercises: exercise[] =[];
 
   isAddMode: boolean = true;
 
@@ -71,7 +74,7 @@ export class TrackingComponent implements OnInit {
   }
 
   deleteExerciseById(exerciseId:string){
-    this.workoutService.deleteWorkoutExercises(exerciseId).subscribe(value => {
+    this.workoutService.deleteExercises(exerciseId).subscribe(value => {
       this.loadWorkout();
       this.loadExercises();
     });
@@ -87,13 +90,34 @@ export class TrackingComponent implements OnInit {
     }else{
       this.workoutService.createExerciseInSession(this.workoutSession._id,exerciseId).subscribe();
     }
+    if(this.workoutSession){
+      this.workoutSession.workouts.forEach(value => {console.log(value.exerciseId)})
+    }
 
-    //add exercise
   }
 
-  createExercise(){
-    this.workoutService.createExercise('6268ec483d068e67487af32f', this.name)
+  createExercise(name:string){
+    this.workoutService.createExercise('6268ec483d068e67487af32f', name).subscribe(value => {
+      this.exercises.push(value as exercise);
+    })
+  }
 
+  createExerciseSet(workoutExerciseId: string, weight: string, reps: string) {
+    this.workoutService.createExerciseSet(workoutExerciseId, weight, reps).subscribe(value => {
+      this.loadWorkout();
+    })
+  }
+
+  deleteExerciseSetById(_id: string) {
+    this.workoutService.deleteWorkoutExerciseSetById(_id).subscribe(value => {
+      this.loadWorkout();
+    })
+  }
+
+  deleteExerciseFromSession(exerciseId: string) {
+    this.workoutService.deleteWorkoutExercises(exerciseId).subscribe(value => {
+      this.loadWorkout();
+    })
   }
 
 
@@ -101,4 +125,9 @@ export class TrackingComponent implements OnInit {
     this.isAddMode = isAddMode;
     this.modalService.open(content);
   }
+
+  open2(content: any) {
+    this.modalService.open(content);
+  }
+
 }
