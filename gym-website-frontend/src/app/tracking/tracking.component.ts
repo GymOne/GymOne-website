@@ -90,10 +90,6 @@ export class TrackingComponent implements OnInit {
     }else{
       this.workoutService.createExerciseInSession(this.workoutSession._id,exerciseId).subscribe();
     }
-    if(this.workoutSession){
-      this.workoutSession.workouts.forEach(value => {console.log(value.exerciseId)})
-    }
-
   }
 
   createExercise(name:string){
