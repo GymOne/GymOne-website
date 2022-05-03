@@ -12,12 +12,12 @@
           <input type="date" [(ngModel)]="inputDate" (ngModelChange)="onValueChanged()">
           <button> --> </button>
 
-        <div *ngFor="let exercise of workoutSession?.workouts">
+        <div *ngFor="let workoutExercise of workoutSession?.workouts">
           <div class="side-by-side">
-            <p>{{exercise._id}}</p>
-            <button (click)="deleteExerciseFromSession(exercise._id)">x</button>
+            <p>{{workoutExercise.exercise.name}}</p>
+            <button (click)="deleteExerciseFromSession(workoutExercise._id)">x</button>
           </div>
-          <div *ngFor="let set of exercise.sets" >
+          <div *ngFor="let set of workoutExercise.sets" >
             <div class="side-by-side">
               <p> Weight: {{set.weight}} </p>
               <p> Reps: {{set.reps}} </p>
@@ -43,7 +43,7 @@
                 <input type="text" [(ngModel)]="reps">
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline-dark" (click)="createExerciseSet(exercise._id, weight, reps)+c('Save click')">Save</button>
+                <button type="button" class="btn btn-outline-dark" (click)="createExerciseSet(workoutExercise._id, weight, reps)+c('Save click')">Save</button>
               </div>
             </ng-template>
 

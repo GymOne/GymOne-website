@@ -28,7 +28,7 @@ export class WorkoutService {
         { _id: createWorkoutExerciseDto.workoutSessionId },
         {
           $push: {
-            workouts: { exerciseId: createWorkoutExerciseDto.exerciseId },
+            workouts: { exercise: createWorkoutExerciseDto.exerciseId },
           },
         },
       )
@@ -58,7 +58,7 @@ export class WorkoutService {
       .findOne({
         userId: userId,
         date: date,
-      })
+      }).populate('workouts.exercise')
       .exec();
   }
 

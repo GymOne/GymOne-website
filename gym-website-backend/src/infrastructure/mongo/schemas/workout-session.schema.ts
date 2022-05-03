@@ -8,7 +8,7 @@ export const SetSchema = new Schema({
 });
 
 export const WorkoutExerciseSchema = new Schema({
-  exerciseId: { type: Schema.Types.ObjectId, ref: 'Exercise', required: true },
+  exercise: { type: Schema.Types.ObjectId, ref: 'Exercise', required: true },
   sets: [SetSchema],
 });
 
