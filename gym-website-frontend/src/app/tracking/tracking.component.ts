@@ -92,6 +92,7 @@ export class TrackingComponent implements OnInit {
   }
 
   createExercise(){
+    console.log('1.....'+this.name)
     this.workoutService.createExercise('6268ec483d068e67487af32f', this.name)
 
   }

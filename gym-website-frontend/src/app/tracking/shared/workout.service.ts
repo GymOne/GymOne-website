@@ -34,8 +34,9 @@ export class WorkoutService{
   }
 
   public createExercise(userId:string, name:string){
-    console.log(name)
-    return this._http.post(`http://localhost:3000/exercise/create`, {userId:userId,exerciseName:name});
+    console.log('2......'+name)
+    let vdjbfh = {userId, name}
+    return this._http.post<any>(`http://localhost:3000/exercise/create`, vdjbfh )
   }
 
   // public editExercise(userId:string, name:string){

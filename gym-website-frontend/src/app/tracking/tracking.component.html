@@ -12,10 +12,6 @@
           <input type="date" [(ngModel)]="inputDate" (ngModelChange)="onValueChanged()">
           <button> --> </button>
       </div>
-      <div class="session-container" >
-        <button *ngFor="let exercise in workoutSession.workouts.WorkoutExercises"></button>
-      </div>
-
 
 <!--      ----- 1st column -----       -->
 
@@ -40,7 +36,7 @@
                 <input type="text" [(ngModel)]="name">
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-outline-dark" (click)="createExercise()">Save</button>
+                <button type="button" class="btn btn-outline-dark"  (click)="createExercise() + c('Save click')">Save</button>
               </div>
             </ng-template>
 
