@@ -20,8 +20,8 @@ export class TrackingComponent implements OnInit {
 
   name = ''
 
-  weight = ''
-  reps = ''
+  weight = '0'
+  reps = '0'
 
   workoutSession: workoutSession | undefined;
   exercises: exercise[] =[];
@@ -91,6 +91,7 @@ export class TrackingComponent implements OnInit {
     }else{
       this.workoutService.createExerciseInSession(this.workoutSession._id,exerciseId).subscribe();
     }
+    this.loadWorkout();
   }
 
   createExercise(name:string){
