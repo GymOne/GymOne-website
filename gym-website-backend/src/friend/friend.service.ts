@@ -18,6 +18,10 @@ export class FriendService {
     receiverId: string,
     isAccepted: boolean,
   ): Promise<boolean> {
+    //Check for the existing request from other user
+    if (this.checkOposit(senderId, receiverId)) {
+      return false;
+    }
     const object = await this.getEntryByEmails(senderId, receiverId);
     if (object) return false;
     const newRequestEntity = await new this.friendModel({
@@ -67,5 +71,12 @@ export class FriendService {
       receiverId: response.receiverEmail,
     });
     return true;
+  }
+
+  private checkOposit(senderId: string, receiverId: string) {
+    [senderId, receiverId] = [receiverId, senderId];
+    console.log('sender:  ' + senderId + '  receiver:  ' + receiverId);
+    this.getEntryByEmails(senderId, receiverId);
+    return false;
   }
 }
