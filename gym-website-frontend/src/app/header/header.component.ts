@@ -11,17 +11,11 @@ import {Logout} from "../shared/stores/actions/auth.action";
 })
 export class HeaderComponent implements OnInit {
 
-  // @ts-ignore
-  @Select(AuthState.getUser) currentUser: Observable<string>;
-  // @ts-ignore
-  currentU : string;
+  authenticated:boolean = false;
 
   constructor(private store: Store) {
-    // @ts-ignore
-    this.currentUser.subscribe(
-      (data) => {
-          this.currentU = data;
-      });
+    this.authenticated = this.store.selectSnapshot(AuthState.isAuthenticated);
+    console.log(this.authenticated)
   }
 
   ngOnInit(): void {
