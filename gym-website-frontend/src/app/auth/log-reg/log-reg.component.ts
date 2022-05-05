@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {catchError, first} from "rxjs/operators";
-import {RegisterDto} from "../shared/register.dto";
+import {RegisterDto} from "../../shared/dtos/register.dto";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Observable, throwError} from "rxjs";
-import {LoginDto} from "../shared/login.dto";
-import {AuthService} from "../shared/auth.service";
+import {LoginDto} from "../../shared/dtos/login.dto";
+import {AuthService} from "../../shared/services/auth.service";
 import {Select, Store} from "@ngxs/store";
-import {Login} from "../../shared/auth/user.action";
-import {UserAuthState} from "../../shared/auth/user.state";
+import {Login, Register} from "../../shared/store/action/auth.action";
+import {AuthState} from "../../shared/store/states/auth.state";
 
 @Component({
   selector: 'app-log-reg',
@@ -25,24 +25,16 @@ export class LogRegComponent implements OnInit {
   registerAlert: boolean = false;
   submitted:boolean = false;
 
-
-  // @ts-ignore
-  @Select(UserAuthState.getUser) currentUser: Observable<string>;
-
-
   constructor(private formBuilder: FormBuilder, private _router:Router, private store: Store, private _auth: AuthService) {
-    // @ts-ignore
-    this.currentUser.subscribe(
-      (data) => {
-        if (data) {
-          console.log('reaching back')
-          this.loginForm.disable();
-          this._router.navigate(['tracking']);
-          this.loginForm.reset();
-          this.loginForm.enable();
-          this.loginAlert = false;
-        }
-      });
+
+    const isAuthenticated = this.store.selectSnapshot(AuthState.isAuthenticated);
+    if(isAuthenticated){
+      this._router.navigate(['tracking']);
+      this.loginForm.disable();
+      this.loginForm.reset();
+      this.loginForm.enable();
+      this.loginAlert = false;
+    }
   }
 
   ngOnInit(): void {
@@ -54,7 +46,6 @@ export class LogRegComponent implements OnInit {
       name: ['', [Validators.required]],
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      // passwordConfirm: ['', [Validators.required]],
     })
   }
 
@@ -72,7 +63,9 @@ export class LogRegComponent implements OnInit {
     }
     const loginDto = this.loginForm.value as LoginDto;
 
-    this.store.dispatch(new Login(loginDto));
+    this.store.dispatch(new Login(loginDto)).subscribe(success =>{
+      this._router.navigate(['tracking']);
+    })
   }
 
   closeLoginAlert() {
@@ -102,22 +95,39 @@ export class LogRegComponent implements OnInit {
       return
     }
 
+    const registerDto = this.registerForm.value as RegisterDto;
+
+    this.store.dispatch(new Register(registerDto)).subscribe(
+      success=>{
+        this.registerForm.disable();
+        this._router.navigate(['tracking']);
+        this.registerForm.reset();
+        this.registerForm.enable();
+        this.registerAlert = false;
+      },
+      error => {
+
+      });
+// this.store.dispatch(new Register(registerDto)).subscribe(
+//   success => {
+//   console.log("success")
+// },
+//     error => {
+//       console.log("error")
+// });
+    //   console.log(success)
+    //   this.registerForm.disable();
+    //   this._router.navigate(['tracking']);
+    //   this.registerForm.reset();
+    //   this.registerForm.enable();
+    //   this.registerAlert = false;
+
+
+
+
     // if (this.registerPassword.value != this.passwordConfirm.value) {
     //   return
     // }
-    const registerDto = this.registerForm.value as RegisterDto;
-    this._auth.register(registerDto)
-      .pipe(first()).subscribe(
-      (data) => {
-        if (data) {
-          console.log('reaching back')
-          this.registerForm.disable();
-          this._router.navigate(['tracking']);
-          this.registerForm.reset();
-          this.registerForm.enable();
-          this.registerAlert = false;
-        }
-      });
   }
 
   closeRegisterAlert(){

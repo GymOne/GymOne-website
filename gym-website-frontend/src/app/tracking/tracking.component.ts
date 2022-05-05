@@ -1,10 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {workoutSession} from "./entities/workout-session.entity";
-import {WorkoutService} from "./shared/workout.service";
-import {exercise} from "./entities/exercise.entity";
+import {workoutSession} from "../shared/entities/workout-session.entity";
+import {WorkoutService} from "../shared/services/workout.service";
+import {exercise} from "../shared/entities/exercise.entity";
 import {NgbActiveModal, NgbModal, ModalDismissReasons, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {workoutExercise} from "./entities/workout-exercise.entity";
+import {workoutExercise} from "../shared/entities/workout-exercise.entity";
+import {AuthState} from "../shared/store/states/auth.state";
+import {Store} from "@ngxs/store";
+import {Logout} from "../shared/store/action/auth.action";
 
 @Component({
   selector: 'app-tracking',
@@ -25,7 +28,7 @@ export class TrackingComponent implements OnInit {
 
   isAddMode: boolean = true;
 
-  constructor(private workoutService:WorkoutService, config: NgbModalConfig, private modalService: NgbModal) {
+  constructor(private store:Store,private workoutService:WorkoutService, config: NgbModalConfig, private modalService: NgbModal) {
     config.backdrop = 'static';
     config.keyboard = true;
   }
@@ -51,14 +54,13 @@ export class TrackingComponent implements OnInit {
 
   onValueChanged() {
     this.loadWorkout()
+    this.store.dispatch(Logout)
 
   }
 
   loadWorkout():void{
-    console.log(this.inputDate)
     var date = this.inputDate as Date;
     this.workoutService.getWorkoutSession('6268ec483d068e67487af32f',date).subscribe(value => {
-      console.log(value)
       this.workoutSession = value;
       },
       err => {
@@ -84,7 +86,6 @@ export class TrackingComponent implements OnInit {
     if(!this.workoutSession){
       this.workoutService.createWorkoutSession('6268ec483d068e67487af32f',this.inputDate as Date).subscribe(createdSession => {
         this.workoutSession = createdSession;
-        console.log(createdSession._id)
         this.workoutService.createExerciseInSession(this.workoutSession._id,exerciseId).subscribe();
       });
     }else{

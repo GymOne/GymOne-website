@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Select, Store} from "@ngxs/store";
-import {UserAuthState} from "../shared/auth/user.state";
+import {AuthState} from "../shared/store/states/auth.state";
 import {Observable} from "rxjs";
-import {Logout} from "../shared/auth/user.action";
+import {Logout} from "../shared/store/action/auth.action";
 
 @Component({
   selector: 'app-header',
@@ -12,7 +12,7 @@ import {Logout} from "../shared/auth/user.action";
 export class HeaderComponent implements OnInit {
 
   // @ts-ignore
-  @Select(UserAuthState.getUser) currentUser: Observable<string>;
+  @Select(AuthState.getUser) currentUser: Observable<string>;
   // @ts-ignore
   currentU : string;
 

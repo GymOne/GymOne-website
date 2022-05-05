@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import {Select, Store} from "@ngxs/store";
-import {UserAuthState} from "./shared/auth/user.state";
-import {Observable} from "rxjs";
+import {Store} from "@ngxs/store";
+import {AuthState} from "./shared/store/states/auth.state";
 
 @Component({
   selector: 'app-root',
@@ -11,17 +10,12 @@ import {Observable} from "rxjs";
 export class AppComponent {
 
   title = 'gym-website-frontend';
-  // @ts-ignore
-  @Select(UserAuthState.getUser) currentUser: Observable<string>;
-  // @ts-ignore
-  currentU : string;
+  authenticated:boolean = false;
+
 
   constructor(private store: Store) {
-    // @ts-ignore
-    this.currentUser.subscribe(
-      (data) => {
-        this.currentU = data;
-      });
+    this.authenticated = this.store.selectSnapshot(AuthState.isAuthenticated);
+    console.log(this.authenticated)
   }
 
 }
