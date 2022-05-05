@@ -14,11 +14,10 @@ export class AuthService {
   ) {}
 
   async hashPassword(password: string): Promise<string> {
-    const salt = await bcrypt.genSalt();
-    return await bcrypt.hash(password, salt);
+    return await bcrypt.hash(password, 10);
   }
 
-  async register(user: Readonly<RegisterDto>): Promise<User | any> {
+  async register(user: RegisterDto): Promise<User | any> {
     const { name, email, password } = user;
 
     const existingUser = await this.userService.findByEmail(email);
