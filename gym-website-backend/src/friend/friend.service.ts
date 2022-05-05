@@ -18,17 +18,18 @@ export class FriendService {
     receiverId: string,
     isAccepted: boolean,
   ): Promise<boolean> {
+    //Check for the existing request from other user
+    if (this.checkOposit(senderId, receiverId)) {
+      return false;
+    }
+    const object = await this.getEntryByEmails(senderId, receiverId);
+    if (object) return false;
     const newRequestEntity = await new this.friendModel({
-      // senderId: senderId,
-      // receiverId: receiverId,
-      // isAccepted: false,
-
-      senderId: 'hello',
-      receiverId: 'hello',
+      senderId: senderId,
+      receiverId: receiverId,
       isAccepted: false,
     });
     newRequestEntity.save();
-
     return false;
   }
 
@@ -41,23 +42,41 @@ export class FriendService {
       .exec();
   }
   async respondFriendRequest(response: FriendRequestDto): Promise<boolean> {
-    console.log('response obj     ' + response);
+    console.log('response obj from swagger     ' + response);
     const result = await this.getEntryByEmails(
       response.senderId,
       response.receiverEmail,
     );
-    console.log('got entity from getEntryByEmails' + result);
+    if (result && response.isAccepted) {
+      await this.friendModel.updateOne(
+        { senderId: response.senderId, receiverId: response.receiverEmail },
+        {
+          $set: { isAccepted: true },
+          $currentDate: { lastModified: true },
+        },
+      );
+      return true;
+    }
+    if (result && !response.isAccepted) {
+      console.log('tried to remove');
+      return this.removeRequest(response);
+    }
+    //console.log('Should get something if all good   ' + result);
     if (!result) return null;
-    await this.friendModel.updateOne(
-      { senderId: 'hello', receiverId: 'hello' },
-      {
-        $set: { isAccepted: true },
-        $currentDate: { lastModified: true },
-      },
-    );
-    return true;
-    //this.friendModel.updateOne(result).exec();
+  }
 
+  async removeRequest(response: FriendRequestDto): Promise<boolean> {
+    await this.friendModel.deleteOne({
+      senderId: response.senderId,
+      receiverId: response.receiverEmail,
+    });
     return true;
+  }
+
+  private checkOposit(senderId: string, receiverId: string) {
+    [senderId, receiverId] = [receiverId, senderId];
+    console.log('sender:  ' + senderId + '  receiver:  ' + receiverId);
+    this.getEntryByEmails(senderId, receiverId);
+    return false;
   }
 }

@@ -22,11 +22,9 @@ export class FriendController {
   async submitFriendRequest(
     @Body() frRequest: FriendRequestDto,
   ): Promise<boolean> {
-    const user = await this._userService.findByEmail(frRequest.receiverEmail);
-    console.log('should get id if correct' + user);
     return this._friendService.submitFriendRequest(
       frRequest.senderId,
-      user.id.toString(),
+      frRequest.receiverEmail,
       frRequest.isAccepted,
     );
   }
