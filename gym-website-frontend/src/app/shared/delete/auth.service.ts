@@ -1,12 +1,13 @@
 
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {LoginDto} from "../../auth/shared/login.dto";
+import {LoginDto} from "../dtos/login.dto";
 import {Observable} from "rxjs";
-import {TokenDto} from "../../auth/shared/token.dto";
+import {TokenDto} from "../dtos/token.dto";
 import {environment} from "../../../environments/environment";
 import {map, tap} from "rxjs/operators";
-import {RegisterDto} from "../../auth/shared/register.dto";
+import {RegisterDto} from "../dtos/register.dto";
+import jwt_decode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,9 @@ export class UserAuthService {
 
   constructor(private _http:HttpClient) {}
 
-  async loginWithEmail(loginDto:LoginDto):Promise<any>{
-    const token = await this._http
-      .post<TokenDto>(environment.api +'/auth/login',loginDto).toPromise();
-    return token;
+  async login(loginDto:LoginDto):Promise<any>{
+    this._http
+      .post<TokenDto>(environment.api + '/auth/login', loginDto).subscribe(value => {return value});
   }
   register(user: RegisterDto) {
     console.table(user)
@@ -26,4 +26,6 @@ export class UserAuthService {
       map(user => user)
     )
   }
+
+
 }
