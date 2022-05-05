@@ -7,8 +7,8 @@ import {Observable, throwError} from "rxjs";
 import {LoginDto} from "../../shared/dtos/login.dto";
 import {AuthService} from "../../shared/services/auth.service";
 import {Select, Store} from "@ngxs/store";
-import {Login, Register} from "../../shared/store/action/auth.action";
-import {AuthState} from "../../shared/store/states/auth.state";
+import {Login, Register} from "../../shared/stores/actions/auth.action";
+import {AuthState} from "../../shared/stores/states/auth.state";
 
 @Component({
   selector: 'app-log-reg',
@@ -108,7 +108,7 @@ export class LogRegComponent implements OnInit {
       error => {
 
       });
-// this.store.dispatch(new Register(registerDto)).subscribe(
+// this.stores.dispatch(new Register(registerDto)).subscribe(
 //   success => {
 //   console.log("success")
 // },

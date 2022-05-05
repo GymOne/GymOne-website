@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Select, Store} from "@ngxs/store";
-import {AuthState} from "../shared/store/states/auth.state";
+import {AuthState} from "../shared/stores/states/auth.state";
 import {Observable} from "rxjs";
-import {Logout} from "../shared/store/action/auth.action";
+import {Logout} from "../shared/stores/actions/auth.action";
 
 @Component({
   selector: 'app-header',
