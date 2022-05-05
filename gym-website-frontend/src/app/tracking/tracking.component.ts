@@ -58,15 +58,15 @@ export class TrackingComponent implements OnInit {
     console.log(this.inputDate)
     var date = this.inputDate as Date;
     this.workoutService.getWorkoutSession('6268ec483d068e67487af32f',date).subscribe(value => {
-      console.log(value)
-      this.workoutSession = value;
+        console.log(value)
+        this.workoutSession = value;
       },
       err => {
       })
   }
   loadExercises():void{
     this.workoutService.getExercises('6268ec483d068e67487af32f').subscribe(value => {
-      this.exercises = [];
+        this.exercises = [];
         this.exercises = value;
       },
       err => {
@@ -74,7 +74,7 @@ export class TrackingComponent implements OnInit {
   }
 
   deleteExerciseById(exerciseId:string){
-    this.workoutService.deleteWorkoutExercises(exerciseId).subscribe(value => {
+    this.workoutService.deleteExercises(exerciseId).subscribe(value => {
       this.loadWorkout();
       this.loadExercises();
     });
@@ -90,13 +90,31 @@ export class TrackingComponent implements OnInit {
     }else{
       this.workoutService.createExerciseInSession(this.workoutSession._id,exerciseId).subscribe();
     }
-
-    //add exercise
+    this.loadWorkout();
   }
 
-  createExercise(){
-    this.workoutService.createExercise('6268ec483d068e67487af32f', this.name)
+  createExercise(name:string){
+    this.workoutService.createExercise('6268ec483d068e67487af32f', name).subscribe(value => {
+      this.exercises.push(value as exercise);
+    })
+  }
 
+  createExerciseSet(workoutExerciseId: string, weight: string, reps: string) {
+    this.workoutService.createExerciseSet(workoutExerciseId, weight, reps).subscribe(value => {
+      this.loadWorkout();
+    })
+  }
+
+  deleteExerciseSetById(_id: string) {
+    this.workoutService.deleteWorkoutExerciseSetById(_id).subscribe(value => {
+      this.loadWorkout();
+    })
+  }
+
+  deleteExerciseFromSession(exerciseId: string) {
+    this.workoutService.deleteWorkoutExercises(exerciseId).subscribe(value => {
+      this.loadWorkout();
+    })
   }
 
 
@@ -104,4 +122,9 @@ export class TrackingComponent implements OnInit {
     this.isAddMode = isAddMode;
     this.modalService.open(content);
   }
+
+  open2(content: any) {
+    this.modalService.open(content);
+  }
+
 }
