@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../../shared/services/auth.service'
 import { map } from 'rxjs/operators'
 import {Select, Store} from "@ngxs/store";
-import {AuthState} from "../../shared/store/states/auth.state";
+import {AuthState} from "../../shared/stores/states/auth.state";
 
 @Injectable({
   providedIn: 'root'

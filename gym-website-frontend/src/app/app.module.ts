@@ -16,7 +16,7 @@ import {NgxsModule} from "@ngxs/store";
 import {environment} from "../environments/environment";
 import {NgxsStoragePluginModule} from "@ngxs/storage-plugin";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {AuthState} from "./shared/store/states/auth.state";
+import {AuthState} from "./shared/stores/states/auth.state";
 
 @NgModule({
   declarations: [

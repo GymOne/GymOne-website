@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Store} from "@ngxs/store";
-import {AuthState} from "./shared/store/states/auth.state";
+import {AuthState} from "./shared/stores/states/auth.state";
 
 @Component({
   selector: 'app-root',

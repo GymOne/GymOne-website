@@ -5,9 +5,9 @@ import {exercise} from "../shared/entities/exercise.entity";
 import {NgbActiveModal, NgbModal, ModalDismissReasons, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {workoutExercise} from "../shared/entities/workout-exercise.entity";
-import {AuthState} from "../shared/store/states/auth.state";
+import {AuthState} from "../shared/stores/states/auth.state";
 import {Store} from "@ngxs/store";
-import {Logout} from "../shared/store/action/auth.action";
+import {Logout} from "../shared/stores/actions/auth.action";
 
 @Component({
   selector: 'app-tracking',
@@ -68,7 +68,6 @@ export class TrackingComponent implements OnInit {
   }
   loadExercises():void{
     this.workoutService.getExercises('6268ec483d068e67487af32f').subscribe(value => {
-      this.exercises = [];
         this.exercises = value;
       },
       err => {
@@ -86,12 +85,12 @@ export class TrackingComponent implements OnInit {
     if(!this.workoutSession){
       this.workoutService.createWorkoutSession('6268ec483d068e67487af32f',this.inputDate as Date).subscribe(createdSession => {
         this.workoutSession = createdSession;
-        this.workoutService.createExerciseInSession(this.workoutSession._id,exerciseId).subscribe();
+        this.workoutService.createExerciseInSession(this.workoutSession._id,exerciseId).subscribe(value => {this.loadWorkout();});
       });
     }else{
-      this.workoutService.createExerciseInSession(this.workoutSession._id,exerciseId).subscribe();
+      this.workoutService.createExerciseInSession(this.workoutSession._id,exerciseId).subscribe(value => {this.loadWorkout();});
     }
-    this.loadWorkout();
+
   }
 
   createExercise(name:string){

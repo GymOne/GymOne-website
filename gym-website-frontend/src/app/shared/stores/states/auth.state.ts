@@ -3,7 +3,7 @@ import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {Injectable} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {tap} from "rxjs/operators";
-import {Login, Logout, Register} from "../action/auth.action";
+import {Login, Logout, Register} from "../actions/auth.action";
 import {TokenDto} from "../../dtos/token.dto";
 import {Router} from "@angular/router";
 import {User} from "../../entities/user.entity";
