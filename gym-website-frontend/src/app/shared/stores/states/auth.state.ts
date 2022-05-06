@@ -7,6 +7,7 @@ import {Login, Logout, Register} from "../actions/auth.action";
 import {TokenDto} from "../../dtos/token.dto";
 import {Router} from "@angular/router";
 import {User} from "../../entities/user.entity";
+import jwt_decode from "jwt-decode";
 
 export class AuthStateModel {
   user:User;
@@ -26,6 +27,12 @@ export class AuthState {
   static getToken(state: AuthStateModel) {
     return state.user.token;
   }
+
+  @Selector()
+  static getUserId(state: AuthStateModel) {
+    return state.user.id;
+  }
+
   @Selector()
   static getEmail(state: AuthStateModel) {
     return state.user.email;
@@ -41,10 +48,12 @@ export class AuthState {
   @Action(Login)
   login(ctx: StateContext<AuthStateModel>, action: Login) {
     return this.authService.login(action.payload).pipe(tap((result: TokenDto)=>{
+      const decoded = jwt_decode(result.token)['user'] as User;
       ctx.patchState({
         user: {
+          id: decoded.id,
           token: result.token,
-          email: action.payload.email
+          email: decoded.email
         }
       });
     }))
