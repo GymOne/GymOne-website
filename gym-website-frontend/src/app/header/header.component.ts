@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import {Select, Store} from "@ngxs/store";
+import {Component, OnInit} from '@angular/core';
+import {Store} from "@ngxs/store";
 import {AuthState} from "../shared/stores/states/auth.state";
-import {Observable} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 import {Logout} from "../shared/stores/actions/auth.action";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -11,17 +12,19 @@ import {Logout} from "../shared/stores/actions/auth.action";
 })
 export class HeaderComponent implements OnInit {
 
-  authenticated:boolean = false;
-
-  constructor(private store: Store) {
-    this.authenticated = this.store.selectSnapshot(AuthState.isAuthenticated);
-    console.log(this.authenticated)
+  constructor(private store: Store,private router:Router) {
   }
 
   ngOnInit(): void {
   }
 
+  isLoggedIn(): boolean {
+    return this.store.selectSnapshot(AuthState.isAuthenticated);
+  }
+
   Logout() {
-    this.store.dispatch(new Logout());
+    this.store.dispatch(new Logout()).subscribe(success => {
+      this.router.navigate(['/auth/log-reg'])
+    });
   }
 }
