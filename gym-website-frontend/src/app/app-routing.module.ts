@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'tracking', component: TrackingComponent, canActivate: [AuthGuard]  },
   { path: "auth", loadChildren: () => import('./auth/auth.module').then(f=>f.AuthModule)},
+  { path: "friends", loadChildren: () => import('./friend/friend.module').then(f=>f.FriendModule)},
 
   { path: '**', redirectTo: 'home' },
 ];
