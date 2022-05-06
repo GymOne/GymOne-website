@@ -4,7 +4,7 @@
     <a [routerLink]="['/home']" [routerLinkActive]="['active']" #one="routerLinkActive">Home</a>
     <a [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact</a>
     <a [routerLink]="['/about']" [routerLinkActive]="['active']">About</a>
-    <a *ngIf="!isLoggedIn()" class="pointer">Login</a>
+    <a *ngIf="!isLoggedIn()" class="pointer" [routerLink]="['/auth/log-reg']" [routerLinkActive]="['active']">Login</a>
     <a *ngIf="isLoggedIn()" (click)="Logout()" class="pointer">Logout</a>
   </div>
   <!--    <span *ngIf="one.isActive">Something</span>-->
