@@ -77,21 +77,4 @@ export class WorkoutService {
       .exec();
   }
 
-  /*  async createWorkoutExerciseSet(
-    createWorkoutExerciseSetDto: CreateWorkoutExerciseSetDto,
-  ) {
-    return await this.workoutModel
-      .findOneAndUpdate(
-        { 'workouts._id': createWorkoutExerciseSetDto.workoutExerciseId },
-        {
-          $push: {
-            'workouts.$.sets': {
-              weight: createWorkoutExerciseSetDto.weight,
-              reps: createWorkoutExerciseSetDto.reps,
-            },
-          },
-        },
-      )
-      .exec();
-  }*/
 }
