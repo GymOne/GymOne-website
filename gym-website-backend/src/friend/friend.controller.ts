@@ -1,15 +1,20 @@
 import {
   Body,
   Controller,
+  Get,
   HttpCode,
   HttpException,
   HttpStatus,
+  Param,
+  ParseArrayPipe,
   Post,
+  Query,
 } from '@nestjs/common';
 import { FriendRequestDto } from './dto/friend-request.dto';
 import { FriendService } from './friend.service';
 import { UserService } from '../users/user.service';
 import { FriendStatusDto } from './dto/friend-status.dto';
+import { query } from 'express';
 
 @Controller('friend')
 export class FriendController {
@@ -17,6 +22,13 @@ export class FriendController {
     private _friendService: FriendService,
     private _userService: UserService,
   ) {}
+
+  @Get('getRequestsByEmail/:userEmail')
+  findAllByUserId(
+    @Param('userEmail') userEmail: string,
+  ): Promise<FriendRequestDto[]> {
+    return this._friendService.getRequestsByEmail(userEmail);
+  }
 
   @Post('submitRequest')
   async submitFriendRequest(
