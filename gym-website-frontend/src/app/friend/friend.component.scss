@@ -1,0 +1,189 @@
+.inner {
+  position: absolute;
+}
+
+// --- Back ground color and image with animation ---
+.home-img{
+  background-image: url("../../assets/images/gymExamBg.jpg");
+
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  opacity: 80%;
+
+  //overflow: hidden;
+  //visibility: inherit;
+}
+
+.bg-color{
+  background-color: #145781;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+
+// --- Tracking box ---
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+.overflow-down{
+  float:left;
+  width: 27.5vw;
+  overflow-y: auto;
+  height: 25.5vw;
+  border-width: 1px;
+  border-color: #333333;
+}
+
+* {
+  box-sizing: border-box;
+  p{
+    margin: 0.4vw;
+  }
+}
+
+div {
+  height: 300px;
+
+}
+.center-div{
+  display: flex;
+  justify-content: center;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 1vw;
+  height: 33vw;
+  text-align: center;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+span {
+  font-size: 1.1vw;
+}
+
+.main-container {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1vw 1.5vw rgba(0,0,0,0.25),
+  0 1vw 1vw rgba(0,0,0,0.22);
+  position: relative;
+  overflow: hidden;
+  width: 65vw;
+  //max-width: 100%;
+  height: 33vw;
+  margin-top: 11vw;
+  margin-left: 20vw;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.search-container button {
+  cursor: pointer;
+}
+
+.side-by-side{
+  display: inline-flex;
+  align-items: center;
+}
+
+
+.exercises-list li{
+  list-style-type: none;
+}
+
+.session-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.border1{
+  //width: 30vw;
+  height: 28vw;
+  overflow-y: auto;
+  border-color: #333333;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.margin-top{
+  margin-top: 0.5vw;
+}
+
+.margin-bottom{
+  margin-bottom: 0.3vw;
+}
+
+.margin-left{
+  margin-left: 0.5vw;
+}
+
+//Delete and add button
+
+
+
+/* CSS */
+.button-30 {
+  align-items: center;
+  appearance: none;
+  background-color: #FCFCFD;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395A;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 2vw;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 1vw;
+}
+
+.button-30:focus {
+  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-30:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
