@@ -20,7 +20,6 @@ ExerciseSchema.index(
 
 ExerciseSchema.pre('deleteOne', async function (next) {
   const id = this.getQuery()['_id'];
-  console.log(id);
   await mongoose
     .model('Workout')
     .updateMany({ 'workouts.exercise': id }, { $pull: { workouts: { exercise: id } } })
