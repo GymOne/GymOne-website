@@ -11,14 +11,14 @@
         <body>
         <div  class="border1" >
 
-          <button id="btnAddFriend">Add a friend</button>
+          <button id="btnAddFriend" (click)="getFriendRequests()">Add a friend</button>
           <button id="btnRemoveFriend">Remove an Friend</button>
 
 
           <ul id="friendList">
-            <li *ngFor="let friend of list">
-              <p>{{friend.senderId}}  </p>
-            </li>
+            <!--  <li <-- *ngFor="let friend of list">-->
+          <!--    <p>{{friend.senderId}}  </p> -->
+         <!--   </li> -->
           </ul>
         </div>
 
