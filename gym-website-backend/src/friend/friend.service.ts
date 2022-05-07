@@ -79,4 +79,12 @@ export class FriendService {
     this.getEntryByEmails(senderId, receiverId);
     return false;
   }
+
+  getRequestsByEmail(userEmail: string): Promise<FriendRequestDto[]> {
+    //const res = this.friendModel.find({ senderId: userEmail }).exec();
+    const res = this.friendModel
+      .find({ $or: [{ senderId: userEmail }, { receiverId: userEmail }] })
+      .exec();
+    return res.then();
+  }
 }
