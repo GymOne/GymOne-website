@@ -9,19 +9,19 @@
       <div class="column" style="background-color:#aaa;">
         <h2>Your Friends</h2>
         <body>
-        <div class="border1">
+        <div  class="border1" >
 
           <button id="btnAddFriend">Add a friend</button>
           <button id="btnRemoveFriend">Remove an Friend</button>
 
 
           <ul id="friendList">
-            <li class="listItem">
-              <h3>Friend</h3>
-              <p>Information about the friend</p>
+            <li *ngFor="let friend of list">
+              <p>{{friend.senderId}}  </p>
             </li>
           </ul>
         </div>
+
         </body>
 
       </div>
