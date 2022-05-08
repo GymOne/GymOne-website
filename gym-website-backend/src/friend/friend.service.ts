@@ -74,6 +74,7 @@ export class FriendService {
   }
 
   private checkOposit(senderId: string, receiverId: string) {
+    // Destructive assignment, flips the values around
     [senderId, receiverId] = [receiverId, senderId];
     console.log('sender:  ' + senderId + '  receiver:  ' + receiverId);
     this.getEntryByEmails(senderId, receiverId);
