@@ -126,5 +126,4 @@ export class TrackingComponent implements OnInit {
   open2(content: any) {
     this.modalService.open(content);
   }
-
 }
