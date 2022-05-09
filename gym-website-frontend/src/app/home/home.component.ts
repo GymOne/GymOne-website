@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthState} from "../shared/stores/states/auth.state";
+import {Store} from "@ngxs/store";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
   }
 
+  isLoggedIn(): boolean {
+    return this.store.selectSnapshot(AuthState.isAuthenticated);
+  }
 }

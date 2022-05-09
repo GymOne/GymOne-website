@@ -19,6 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AuthState} from "./shared/stores/states/auth.state";
 import {TrackingState} from "./shared/stores/states/tracking.state";
 import {ExerciseState} from "./shared/stores/states/exercise.state";
+import { ProfileComponent } from './profile/profile.component';
+import {FriendComponent} from "./friend/friend.component";
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import {ExerciseState} from "./shared/stores/states/exercise.state";
     AboutComponent,
     UserNavComponent,
     TrackingComponent,
+    ProfileComponent,
+    FriendComponent,
   ],
   imports: [
     BrowserModule,

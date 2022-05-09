@@ -55,10 +55,10 @@
   justify-content: center;
 }
 
-/* Create three equal columns that floats next to each other */
+/* Create three equal columns that floats next to each other if width 50% or 33% */
 .column {
   float: left;
-  width: 50%;
+  width: 100%;
   padding: 1vw;
   height: 33vw;
   text-align: center;
@@ -93,21 +93,15 @@ span {
   cursor: pointer;
 }
 
-.search-container button {
-  cursor: pointer;
+.side-by-side{
+  display: inline-flex;
+  align-items: center;
 }
-
-
-
 
 .exercises-list li{
   list-style-type: none;
 }
-.friend-request{
-  display: flex;
-  flex-flow : row;
-  align-items: center;
-}
+
 .session-container{
   display: flex;
   flex-direction: column;
@@ -183,4 +177,3 @@ span {
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
 }
-
