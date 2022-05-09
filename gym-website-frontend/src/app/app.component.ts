@@ -15,7 +15,6 @@ export class AppComponent {
 
   constructor(private store: Store) {
     this.authenticated = this.store.selectSnapshot(AuthState.isAuthenticated);
-    console.log(this.authenticated)
   }
 
 }

@@ -6,8 +6,17 @@ import {NgbActiveModal, NgbModal, ModalDismissReasons, NgbModalConfig} from "@ng
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {workoutExercise} from "../shared/entities/workout-exercise.entity";
 import {AuthState} from "../shared/stores/states/auth.state";
-import {Store} from "@ngxs/store";
+import {Select, Store} from "@ngxs/store";
 import {Logout} from "../shared/stores/actions/auth.action";
+import {
+  CreateWorkoutExercise,
+  CreateWorkoutExerciseSet, DeleteWorkoutExercise, DeleteWorkoutExerciseSet,
+  LoadWorkout, SetWorkoutDate
+} from "../shared/stores/actions/tracking.action";
+import {TrackingState} from "../shared/stores/states/tracking.state";
+import {Observable} from "rxjs";
+import {ExerciseState} from "../shared/stores/states/exercise.state";
+import {CreateExercise, DeleteExercise, LoadExercises} from "../shared/stores/actions/exercise.action";
 
 @Component({
   selector: 'app-tracking',
@@ -23,10 +32,13 @@ export class TrackingComponent implements OnInit {
   weight = '0'
   reps = '0'
 
-  workoutSession: workoutSession | undefined;
-  exercises: exercise[] =[];
-
   isAddMode: boolean = true;
+
+  @Select(TrackingState.getWorkout)
+  workoutSession$: Observable<workoutSession>;
+
+  @Select(ExerciseState.getExercises)
+  exercises$: Observable<exercise[]>;
 
   constructor(private store:Store,private workoutService:WorkoutService, config: NgbModalConfig, private modalService: NgbModal) {
     config.backdrop = 'static';
@@ -36,10 +48,10 @@ export class TrackingComponent implements OnInit {
 
   ngOnInit(): void {
     this.inputDate = this.currentDateAsString();
-    if(this.workoutSession == undefined){
-      this.loadExercises();
-      this.loadWorkout();
-    }
+    const currentDate = this.inputDate as Date;
+
+    this.store.dispatch(new SetWorkoutDate(currentDate))
+    this.store.dispatch(new LoadExercises)
   }
   currentDateAsString():string{
     var today = new Date();
@@ -53,68 +65,32 @@ export class TrackingComponent implements OnInit {
 
 
   onValueChanged() {
-    this.loadWorkout()
-    this.store.dispatch(Logout)
-
+    const dateChange = this.inputDate as Date;
+    this.store.dispatch(new SetWorkoutDate(dateChange))
   }
 
-  loadWorkout():void{
-    var date = this.inputDate as Date;
-    this.workoutService.getWorkoutSession('6268ec483d068e67487af32f',date).subscribe(value => {
-      this.workoutSession = value;
-      },
-      err => {
-      })
-  }
-  loadExercises():void{
-    this.workoutService.getExercises('6268ec483d068e67487af32f').subscribe(value => {
-        this.exercises = value;
-      },
-      err => {
-      })
+  deleteExercise(exerciseId:string){
+    this.store.dispatch(new DeleteExercise(exerciseId))
   }
 
-  deleteExerciseById(exerciseId:string){
-    this.workoutService.deleteExercises(exerciseId).subscribe(value => {
-      this.loadWorkout();
-      this.loadExercises();
-    });
-  }
-
-  addExerciseToSession(exerciseId: string) {
-    if(!this.workoutSession){
-      this.workoutService.createWorkoutSession('6268ec483d068e67487af32f',this.inputDate as Date).subscribe(createdSession => {
-        this.workoutSession = createdSession;
-        this.workoutService.createExerciseInSession(this.workoutSession._id,exerciseId).subscribe(value => {this.loadWorkout();});
-      });
-    }else{
-      this.workoutService.createExerciseInSession(this.workoutSession._id,exerciseId).subscribe(value => {this.loadWorkout();});
-    }
-
+  createWorkoutExercise(exerciseId: string) {
+    this.store.dispatch(new CreateWorkoutExercise(exerciseId))
   }
 
   createExercise(name:string){
-    this.workoutService.createExercise('6268ec483d068e67487af32f', name).subscribe(value => {
-      this.exercises.push(value as exercise);
-    })
+    this.store.dispatch(new CreateExercise(name))
   }
 
-  createExerciseSet(workoutExerciseId: string, weight: string, reps: string) {
-    this.workoutService.createExerciseSet(workoutExerciseId, weight, reps).subscribe(value => {
-      this.loadWorkout();
-    })
+  createWorkoutExerciseSet(workoutExerciseId: string, weight: string, reps: string) {
+    this.store.dispatch(new CreateWorkoutExerciseSet(workoutExerciseId,weight,reps));
   }
 
-  deleteExerciseSetById(_id: string) {
-    this.workoutService.deleteWorkoutExerciseSetById(_id).subscribe(value => {
-      this.loadWorkout();
-    })
+  deleteWorkoutExerciseSet(setId: string) {
+    this.store.dispatch(new DeleteWorkoutExerciseSet(setId))
   }
 
-  deleteExerciseFromSession(exerciseId: string) {
-    this.workoutService.deleteWorkoutExercises(exerciseId).subscribe(value => {
-      this.loadWorkout();
-    })
+  deleteWorkoutExercise(exerciseId: string) {
+    this.store.dispatch(new DeleteWorkoutExercise(exerciseId));
   }
 
 

@@ -17,6 +17,8 @@ import {environment} from "../environments/environment";
 import {NgxsStoragePluginModule} from "@ngxs/storage-plugin";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AuthState} from "./shared/stores/states/auth.state";
+import {TrackingState} from "./shared/stores/states/tracking.state";
+import {ExerciseState} from "./shared/stores/states/exercise.state";
 
 @NgModule({
   declarations: [
@@ -35,7 +37,7 @@ import {AuthState} from "./shared/stores/states/auth.state";
     HttpClientModule,
     FormsModule,
     NgbModule,
-    NgxsModule.forRoot([AuthState], {
+    NgxsModule.forRoot([AuthState,TrackingState,ExerciseState], {
       developmentMode: !environment.production
     }),
     NgxsStoragePluginModule.forRoot({
