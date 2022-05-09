@@ -7,21 +7,21 @@
 
 <!--      ----- 1st column -----       -->
       <div class="column" style="background-color:#aaa;">
-        <h2>Exercises done that day</h2>
+        <h2 class="header-text">Exercises done that day</h2>
 
         <div class="border1">
             <button> <-- </button>
             <input type="date" [(ngModel)]="inputDate" (ngModelChange)="onValueChanged()">
             <button> --> </button>
 
-          <div *ngFor="let workoutExercise of workoutSession?.workouts" class="">
+          <div *ngFor="let workoutExercise of workoutSession?.workouts" class="ex-box">
             <div class="side-by-side">
-              <p>{{workoutExercise.exercise.name}}</p>
+              <p class="ex-name">{{workoutExercise.exercise.name}}</p>
             </div>
 
             <button class="button-30 margin-top margin-left" role="button" (click)="deleteExerciseFromSession(workoutExercise._id)">x</button>
 
-              <div *ngFor="let set of workoutExercise.sets" >
+              <div *ngFor="let set of workoutExercise.sets">
                 <div class="side-by-side">
                   <p> Weight: {{set.weight}} </p>
                   <p> Reps: {{set.reps}} </p>
@@ -65,7 +65,7 @@
 
 <!--      ----- 2rd column -----       -->
       <div class="column" style="background-color:#aaa;">
-        <h2>All exercises</h2>
+        <h2 class="header-text">All exercises</h2>
 
         <div class="border1">
           <div class="side-by-side ">
@@ -76,11 +76,11 @@
             <button (click)="open(content, true)">➕</button>
 
 
-            <ng-template #content let-c="close" let-d="dismiss">
+            <ng-template #content let-c="close" let-d="dismiss" class="modal-box">
               <div class="modal-header">
                 <h2 *ngIf="isAddMode">Create new exercise</h2>
                 <h2 *ngIf="!isAddMode">Edit exercise</h2>
-                <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+                <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')">X</button>
               </div>
               <div class="modal-body">
                 <input type="text" [(ngModel)]="name">
