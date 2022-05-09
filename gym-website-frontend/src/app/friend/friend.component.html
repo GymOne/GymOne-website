@@ -11,14 +11,14 @@
         <body>
         <div  class="border1" >
 
-          <button id="btnAddFriend" (click)="getFriendRequests()">Add a friend</button>
-          <button id="btnRemoveFriend">Remove an Friend</button>
+          <button id="btnAddFriend" (click)="getFriendRequests()">Add a Friend</button>
+          <button id="btnRemoveFriend">Remove a Friend</button>
 
 
           <ul id="friendList">
-            <!--  <li <-- *ngFor="let friend of list">-->
-          <!--    <p>{{friend.senderId}}  </p> -->
-         <!--   </li> -->
+              <li *ngFor="let friend of $listFriends">
+             <p>{{friend.senderId}}  </p>
+          </li>
           </ul>
         </div>
 
@@ -40,19 +40,19 @@
 
 
 
-            <div class="modal-header">
 
-              <ul id="requestList">
-                <li class="listItem">
-                  <h3>Friend</h3>
-                  <p>Information about the friend</p>
-                </li>
-              </ul>
-              <button id="btnAdd">Add a friend</button>
-              <button id="btnRemove">Remove an Friend</button>
-            </div>
+            <ul id="requestList">
 
+              <li *ngFor="let friend of $listRequests">
+                <div  class="friend-request">
+                  <p >{{friend.senderId}}  </p>
 
+                  <button>Accept</button>
+                  <button>Decline</button>
+                </div>
+              </li>
+
+            </ul>
 
 
 
