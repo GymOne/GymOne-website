@@ -17,7 +17,7 @@ export class WorkoutService{
   public getWorkoutSession(userId:string,date:Date):Observable<workoutSession>{
     return this._http.get<workoutSession>(`http://localhost:3000/workout/session/${userId}/${date}`);
   }
-  public deleteExercises(exerciseId:string){
+  public deleteExercise(exerciseId:string){
     return this._http.delete(`http://localhost:3000/exercise/deleteById/${exerciseId}`);
   }
 
