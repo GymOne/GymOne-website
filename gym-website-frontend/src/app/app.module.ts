@@ -17,6 +17,7 @@ import {environment} from "../environments/environment";
 import {NgxsStoragePluginModule} from "@ngxs/storage-plugin";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {AuthState} from "./shared/stores/states/auth.state";
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {AuthState} from "./shared/stores/states/auth.state";
     AboutComponent,
     UserNavComponent,
     TrackingComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
