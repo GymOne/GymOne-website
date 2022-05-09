@@ -55,7 +55,7 @@
   justify-content: center;
 }
 
-/* Create three equal columns that floats next to each other */
+/* Create three equal columns that floats next to each other if width 50% or 33% */
 .column {
   float: left;
   width: 100%;
@@ -93,15 +93,10 @@ span {
   cursor: pointer;
 }
 
-.search-container button {
-  cursor: pointer;
-}
-
 .side-by-side{
   display: inline-flex;
   align-items: center;
 }
-
 
 .exercises-list li{
   list-style-type: none;

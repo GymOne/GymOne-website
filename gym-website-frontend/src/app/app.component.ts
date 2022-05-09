@@ -10,12 +10,13 @@ import {AuthState} from "./shared/stores/states/auth.state";
 export class AppComponent {
 
   title = 'gym-website-frontend';
-  authenticated:boolean = false;
 
 
   constructor(private store: Store) {
-    this.authenticated = this.store.selectSnapshot(AuthState.isAuthenticated);
-    console.log(this.authenticated)
+  }
+
+  isLoggedIn(): boolean {
+    return this.store.selectSnapshot(AuthState.isAuthenticated);
   }
 
 }
