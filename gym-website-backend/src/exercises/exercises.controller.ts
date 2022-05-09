@@ -16,7 +16,6 @@ export class ExercisesController {
 
   @Post('create')
   create(@Body() createExerciseDto: CreateExerciseDto) {
-    console.log(createExerciseDto + '      dbvsjvr');
     return this.exercisesService.create(createExerciseDto);
   }
 
