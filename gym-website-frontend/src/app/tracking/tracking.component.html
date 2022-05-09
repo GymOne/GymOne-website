@@ -7,16 +7,16 @@
 
 <!--      ----- 1st column -----       -->
       <div class="column" style="background-color:#aaa;">
-        <h2>Exercises done that day</h2>
+        <h2>Workout Session</h2>
 
         <div class="border1">
             <button> <-- </button>
             <input type="date" [(ngModel)]="inputDate" (ngModelChange)="onValueChanged()">
             <button> --> </button>
           <div *ngIf="workoutSession$ | async; let session">
-          <div *ngFor="let workoutExercise of session.workouts" class="">
+          <div *ngFor="let workoutExercise of session.workouts" class="ex-box">
             <div class="side-by-side">
-              <p>{{workoutExercise.exercise.name}}</p>
+              <p class="ex-name">{{workoutExercise.exercise.name}}</p>
             </div>
 
             <button class="button-30 margin-top margin-left" role="button" (click)="deleteWorkoutExercise(workoutExercise._id)">x</button>
