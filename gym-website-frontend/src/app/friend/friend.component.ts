@@ -36,10 +36,10 @@ export class FriendComponent implements OnInit {
   getFriendRequests() {
     //Gets requests from the database with the users email tied to it.
     if (this.email != "") {
+      this.$listRequests = []
+      this.$listFriends = []
       this.friendService.getRequests(this.email).subscribe((value) => {
-        //Prints the table of requests to the console
-        console.table(value);
-        //For loop that
+        //For loop
         for (let i = 0; i <value.length ; i++) {
           const friends = value[i];
           if (friends.isAccepted == true) {
@@ -51,6 +51,29 @@ export class FriendComponent implements OnInit {
       })
     }
   }
+
+  acceptFriendRequest(friend : FriendDto){
+    friend.isAccepted = true
+    friend.receiverEmail = this.email
+    console.table(friend)
+   this.friendService.acceptFriend(friend).subscribe(data =>
+    {
+      this.getFriendRequests()
+    })
+
+
+  }
+  unfriend(friend : FriendDto){
+    friend.isAccepted = false
+    friend.receiverEmail = this.email
+    console.table(friend)
+    this.friendService.deleteFriend(friend).subscribe(data =>
+    {
+      this.getFriendRequests()
+    })
+  }
+
+
   sendFriendRequest(searchEmail : string){
 
     if(this.email != searchEmail && searchEmail != ""){
@@ -60,5 +83,7 @@ export class FriendComponent implements OnInit {
         this.friendService.makeRequest(friendDto).subscribe((data =>{console.log(data)}))
      }
   }
+
+
 
 }

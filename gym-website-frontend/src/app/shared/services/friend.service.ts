@@ -25,5 +25,13 @@ export class FriendService {
     console.log(friendRequest)
     return this._http.post<FriendDto>('http://localhost:3000/friend/submitRequest/', friendRequest)
   }
+  public acceptFriend(friendRequest: FriendDto) {
+    console.log('Just before sending  '+ friendRequest.isAccepted, friendRequest.senderId, friendRequest.receiverEmail)
+    return this._http.post<FriendDto>('http://localhost:3000/friend/actionOnRequet/', friendRequest)
+  }
 
+  public deleteFriend(friendRequest: FriendDto) {
+    console.log('Just before sending  '+ friendRequest.isAccepted, friendRequest.senderId, friendRequest.receiverEmail)
+    return this._http.post<FriendDto>('PLACEHOLDER', friendRequest)
+  }
 }
