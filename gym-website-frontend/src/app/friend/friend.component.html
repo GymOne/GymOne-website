@@ -11,12 +11,11 @@
         <body>
         <div  class="border1" >
 
-          <button id="btnRemoveFriend">Remove a Friend</button>
-
-
           <ul id="friendList">
               <li *ngFor="let friend of $listFriends">
              <p>{{friend.senderId}}  </p>
+                <button>View Profile</button>
+                <button>Unfriend</button>
           </li>
           </ul>
         </div>
@@ -49,8 +48,8 @@
                 <div  class="friend-request">
                   <p >{{friend.senderId}}  </p>
 
-                  <button>Accept</button>
-                  <button>Decline</button>
+                  <button (click)="acceptFriendRequest(friend)">Accept</button>
+                  <button (click)="unfriend(friend)">Decline</button>
                 </div>
               </li>
 
