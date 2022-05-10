@@ -50,6 +50,14 @@
   }
 }
 
+.properties{
+  font-size: 2vw;
+  margin-top: 1.5vw;
+  input{
+    width: 24vw;
+  }
+}
+
 .center-div{
   display: flex;
   justify-content: center;
@@ -62,6 +70,10 @@
   padding: 1vw;
   height: 33vw;
   text-align: center;
+  h2{
+    font-size: 3vw;
+    margin-bottom: 2vw;;
+  }
 }
 
 /* Clear floats after the columns */
@@ -95,7 +107,6 @@ span {
 
 .side-by-side{
   display: inline-flex;
-  align-items: center;
 }
 
 .exercises-list li{
@@ -125,7 +136,11 @@ span {
 }
 
 .margin-left{
-  margin-left: 0.5vw;
+  margin-left: 5vw;
+}
+
+.margin-right{
+  margin-right: 3.5vw;
 }
 
 //Delete and add button
