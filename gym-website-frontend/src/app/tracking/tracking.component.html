@@ -42,11 +42,11 @@
                 </div>
                 <div class="modal-body">
                   <p>Weight</p>
-                  <input type="text" [(ngModel)]="weight">
+                  <input type="text" [(ngModel)]="weight" (keyup.enter)="createWorkoutExerciseSet(workoutExercise._id, weight, reps)+c('Save click')">
                 </div>
                 <div class="modal-body">
                   <p>Reps</p>
-                  <input type="text" [(ngModel)]="reps">
+                  <input type="text" [(ngModel)]="reps" (keyup.enter)="createWorkoutExerciseSet(workoutExercise._id, weight, reps)+c('Save click')">
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-dark" (click)="createWorkoutExerciseSet(workoutExercise._id, weight, reps)+c('Save click')">Save</button>
@@ -84,7 +84,7 @@
                 <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
               </div>
               <div class="modal-body">
-                <input type="text" [(ngModel)]="name">
+                <input type="text" [(ngModel)]="name" (keyup.enter)="createExercise(name)+c('Save click')">
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline-dark" (click)="createExercise(name)+c('Save click')">Save</button>
