@@ -1,6 +1,6 @@
 
 <!--  Start of the page nr1 -->
-<div class="main bg-color"> <img class="home-img">
+<div class="main bg-color" > <img class="home-img">
 
   <div  class="main-container inner">
     <div class="row">
@@ -13,8 +13,10 @@
 
           <ul id="friendList">
               <li *ngFor="let friend of $listFriends">
-             <p>{{friend.senderId}}  </p>
-                <button>View Profile</button>
+             <p *ngIf="friend.senderId == this.email">{{friend.receiverId}}  </p>
+                <p *ngIf="friend.senderId != this.email">{{friend.senderId}}  </p>
+
+                <button>View Gains</button>
                 <button (click)="unfriend(friend)">Unfriend</button>
           </li>
           </ul>
