@@ -15,7 +15,7 @@
               <li *ngFor="let friend of $listFriends">
              <p>{{friend.senderId}}  </p>
                 <button>View Profile</button>
-                <button>Unfriend</button>
+                <button (click)="unfriend(friend)">Unfriend</button>
           </li>
           </ul>
         </div>

@@ -20,6 +20,9 @@ export class FriendService {
     return this._http.get<FriendDto[]>('http://localhost:3000/friend/getRequestsByEmail/' + email)
   }
 
+  public getUsersByEmail(email: string) : Observable<string>{
+    return this._http.get<string>('http://localhost:3000/user/getByEmail/'+ email)
+  }
 
   public makeRequest(friendRequest: FriendDto) {
     console.log(friendRequest)
@@ -32,6 +35,6 @@ export class FriendService {
 
   public deleteFriend(friendRequest: FriendDto) {
     console.log('Just before sending  '+ friendRequest.isAccepted, friendRequest.senderId, friendRequest.receiverEmail)
-    return this._http.post<FriendDto>('PLACEHOLDER', friendRequest)
+    return this._http.post<FriendDto>('http://localhost:3000/friend/removeRequest/', friendRequest)
   }
 }
