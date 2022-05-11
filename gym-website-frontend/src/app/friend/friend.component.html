@@ -14,7 +14,9 @@
           <div class="to-left">
             <div id="friendList">
                 <div *ngFor="let friend of $listFriends">
-                  <p>{{friend.senderId}}</p>
+                  <p *ngIf="friend.senderId == this.email">{{friend.receiverId}}  </p>
+                  <p *ngIf="friend.senderId != this.email">{{friend.senderId}}  </p>
+
                   <button class="button-30">View Profile</button>
                   <button class="button-30" (click)="unfriend(friend)">Unfriend</button>
                 </div>
