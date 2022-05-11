@@ -6,21 +6,22 @@
     <div class="row">
 
       <!--      ----- 1st column -----       -->
-      <div class="column" style="background-color:#aaa;">
+      <div class="column">
         <h2>Your Friends</h2>
-        <body>
-        <div  class="border1" >
 
-          <ul id="friendList">
-              <li *ngFor="let friend of $listFriends">
-             <p>{{friend.senderId}}  </p>
-                <button>View Profile</button>
-                <button (click)="unfriend(friend)">Unfriend</button>
-          </li>
-          </ul>
+        <div  class="border1">
+
+          <div class="to-left">
+            <div id="friendList">
+                <div *ngFor="let friend of $listFriends">
+                  <p>{{friend.senderId}}  </p>
+                  <button class="button-30">View Profile</button>
+                  <button class="button-30" (click)="unfriend(friend)">Unfriend</button>
+                </div>
+            </div>
+          </div>
+
         </div>
-
-        </body>
 
       </div>
 
@@ -29,14 +30,15 @@
       <!--      ----- 1st column -----       -->
 
       <!--      ----- 2rd column -----       -->
-      <div class="column" style="background-color:#aaa;">
+      <div class="column">
         <h2>Friends Requests</h2>
 
         <div class="border1">
-          <div class="side-by-side ">
+          <div class="">
+
             <form class="search-container">
-              <input type="text" placeholder="Send Friend Request to.." name="addFriendInput" [(ngModel)]="searchEmail">
-              <button type="submit" class="" (click)="sendFriendRequest(searchEmail)"> Add Friend </button>
+              <input type="text" placeholder="Email" name="addFriendInput" class="email-box" [(ngModel)]="searchEmail">
+              <button type="submit" class="button-30" (click)="sendFriendRequest(searchEmail)"> Add Friend </button>
             </form>
 
 
@@ -48,8 +50,8 @@
                 <div  class="friend-request">
                   <p >{{friend.senderId}}  </p>
 
-                  <button (click)="acceptFriendRequest(friend)">Accept</button>
-                  <button (click)="unfriend(friend)">Decline</button>
+                  <button class="button-30" (click)="acceptFriendRequest(friend)">Accept</button>
+                  <button class="button-30" (click)="unfriend(friend)">Decline</button>
                 </div>
               </li>
 
