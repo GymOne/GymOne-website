@@ -2,6 +2,10 @@
   position: absolute;
 }
 
+p{
+  font-size: 1.9vw;
+}
+
 // --- Back ground color and image with animation ---
 .home-img{
   background-image: url("../../assets/images/gymExamBg.jpg");
@@ -55,13 +59,25 @@
   justify-content: center;
 }
 
+.to-left{
+  text-align: left;
+  margin-left: 1vw;
+  p{
+    margin-left: 1.5vw;
+  }
+}
+
 /* Create three equal columns that floats next to each other */
 .column {
   float: left;
   width: 50%;
-  padding: 1vw;
+  padding-top: 0.5vw;
   height: 33vw;
   text-align: center;
+  background-color:#aaa;
+  h2{
+    font-size: 2.5vw;
+  }
 }
 
 /* Clear floats after the columns */
@@ -73,6 +89,10 @@
 
 span {
   font-size: 1.1vw;
+}
+
+ul{
+  list-style-type: none; /* Remove bullets */
 }
 
 .main-container {
@@ -97,9 +117,6 @@ span {
   cursor: pointer;
 }
 
-
-
-
 .exercises-list li{
   list-style-type: none;
 }
@@ -120,6 +137,7 @@ span {
   border-color: #333333;
   border-style: solid;
   border-width: 1px;
+  margin: 1vw;
 }
 
 .margin-top{
@@ -143,7 +161,7 @@ span {
   align-items: center;
   appearance: none;
   background-color: #FCFCFD;
-  border-radius: 4px;
+  border-radius: 0.5vw;
   border-width: 0;
   box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
   box-sizing: border-box;
@@ -151,7 +169,7 @@ span {
   cursor: pointer;
   display: inline-flex;
   font-family: "JetBrains Mono",monospace;
-  height: 2vw;
+  height: 3vw;
   justify-content: center;
   line-height: 1;
   list-style: none;
@@ -167,7 +185,10 @@ span {
   touch-action: manipulation;
   white-space: nowrap;
   will-change: box-shadow,transform;
-  font-size: 1vw;
+  font-size: 1.5vw;
+  margin-bottom: 0.7vw;
+  margin-top: 0.7vw;
+  margin-left: 0.7vw;
 }
 
 .button-30:focus {
@@ -184,3 +205,13 @@ span {
   transform: translateY(2px);
 }
 
+.side-by-side{
+  display: inline-flex;
+  align-items: center;
+}
+
+.email-box{
+  height: 3.5vw;
+  width: 17vw;
+  border-radius: 0.4vw;
+}
