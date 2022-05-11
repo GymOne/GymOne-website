@@ -41,7 +41,9 @@ export class FriendComponent implements OnInit {
       this.friendService.getRequests(this.email).subscribe((value) => {
         //For loop
         for (let i = 0; i <value.length ; i++) {
+
           const friends = value[i];
+         this.getUsersEmail(friends.senderId)
           if (friends.isAccepted == true) {
             this.$listFriends.push(friends);
           } else if(friends.isAccepted == false && friends.senderId != this.email) {
@@ -60,13 +62,17 @@ export class FriendComponent implements OnInit {
     {
       this.getFriendRequests()
     })
-
-
   }
+    getUsersEmail(email : string) : string{
+       this.friendService.getUsersByEmail(email).subscribe(value => {
+        return value
+      })
+      return null
+    }
+
   unfriend(friend : FriendDto){
     friend.isAccepted = false
     friend.receiverEmail = this.email
-    console.table(friend)
     this.friendService.deleteFriend(friend).subscribe(data =>
     {
       this.getFriendRequests()
@@ -78,7 +84,7 @@ export class FriendComponent implements OnInit {
 
     if(this.email != searchEmail && searchEmail != ""){
         let friendDto: FriendDto  =
-          {senderId: this.email, receiverEmail: searchEmail, isAccepted: false}
+          { senderId: this.email, receiverEmail: searchEmail, isAccepted: false}
 
         this.friendService.makeRequest(friendDto).subscribe((data =>{console.log(data)}))
      }
