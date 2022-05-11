@@ -14,7 +14,7 @@
           <div class="to-left">
             <div id="friendList">
                 <div *ngFor="let friend of $listFriends">
-                  <p>{{friend.senderId}}  </p>
+                  <p>{{friend.senderId}}</p>
                   <button class="button-30">View Profile</button>
                   <button class="button-30" (click)="unfriend(friend)">Unfriend</button>
                 </div>
@@ -37,7 +37,7 @@
           <div class="">
 
             <form class="search-container">
-              <input type="text" placeholder="Email" name="addFriendInput" class="email-box" [(ngModel)]="searchEmail">
+              <input type="text" placeholder="Email" name="addFriendInput" class="email-box" (keyup.enter)="sendFriendRequest(searchEmail)" [(ngModel)]="searchEmail">
               <button type="submit" class="button-30" (click)="sendFriendRequest(searchEmail)"> Add Friend </button>
             </form>
 
