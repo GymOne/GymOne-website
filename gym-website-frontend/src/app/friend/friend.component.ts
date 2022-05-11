@@ -44,7 +44,7 @@ export class FriendComponent implements OnInit {
 
           const friends = value[i];
          this.getUsersEmail(friends.senderId)
-          if (friends.isAccepted == true ) {
+          if (friends.isAccepted == true) {
             this.$listFriends.push(friends);
           } else if(friends.isAccepted == false && friends.senderId != this.email) {
             this.$listRequests.push(friends);
