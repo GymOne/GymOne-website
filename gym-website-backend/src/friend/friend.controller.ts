@@ -15,6 +15,7 @@ import { FriendService } from './friend.service';
 import { UserService } from '../users/user.service';
 import { FriendStatusDto } from './dto/friend-status.dto';
 import { query } from 'express';
+import * as http from 'http';
 
 @Controller('friend')
 export class FriendController {
