@@ -19,16 +19,16 @@ body{
 }
 
 .wrapper .sidebar{
-  width: 18vw;
+  width: 20vw;
   //height: 80%;
   background: #133a5e;
   //padding: 0.5vw 2vw;
-  padding-left: 3vw;
   position: fixed;
   margin-top: 13vw;
   margin-left: -1vw;
   //margin-bottom: 10vw;
   border-radius: 1vw;
+  text-align: center;
 }
 
 .wrapper .sidebar h2{
@@ -158,7 +158,7 @@ a{
 }
 
 .menu-name{
-  padding: 15px;
+  padding: 0.9vw;
 }
 
 .slide-in-left {

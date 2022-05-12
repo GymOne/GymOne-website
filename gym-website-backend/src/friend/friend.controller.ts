@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpException,
@@ -40,6 +41,12 @@ export class FriendController {
       frRequest.receiverEmail,
       frRequest.isAccepted,
     );
+  }
+  @Post('removeRequest')
+  async deleteFriendRequest(
+    @Body() frRequest: FriendRequestDto,
+  ): Promise<boolean> {
+    return this._friendService.removeRequest(frRequest);
   }
 
   @Post('actionOnRequet')

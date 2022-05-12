@@ -1,5 +1,5 @@
 <app-header></app-header>
-<app-user-nav *ngIf="authenticated"></app-user-nav>
+<app-user-nav *ngIf="isLoggedIn()"></app-user-nav>
 <div class="main">
   <router-outlet></router-outlet>
 </div>

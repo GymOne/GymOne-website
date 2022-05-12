@@ -2,10 +2,6 @@
   position: absolute;
 }
 
-p{
-  font-size: 1.9vw;
-}
-
 // --- Back ground color and image with animation ---
 .home-img{
   background-image: url("../../assets/images/gymExamBg.jpg");
@@ -54,29 +50,29 @@ p{
   }
 }
 
+.properties{
+  font-size: 2vw;
+  margin-top: 1.5vw;
+  input{
+    width: 24vw;
+  }
+}
+
 .center-div{
   display: flex;
   justify-content: center;
 }
 
-.to-left{
-  text-align: left;
-  margin-left: 1vw;
-  p{
-    margin-left: 1.5vw;
-  }
-}
-
-/* Create three equal columns that floats next to each other */
+/* Create three equal columns that floats next to each other if width 50% or 33% */
 .column {
   float: left;
-  width: 50%;
-  padding-top: 0.5vw;
+  width: 100%;
+  padding: 1vw;
   height: 33vw;
   text-align: center;
-  background-color:#aaa;
   h2{
-    font-size: 2.5vw;
+    font-size: 3vw;
+    margin-bottom: 2vw;;
   }
 }
 
@@ -89,10 +85,6 @@ p{
 
 span {
   font-size: 1.1vw;
-}
-
-ul{
-  list-style-type: none; /* Remove bullets */
 }
 
 .main-container {
@@ -113,18 +105,14 @@ ul{
   cursor: pointer;
 }
 
-.search-container button {
-  cursor: pointer;
+.side-by-side{
+  display: inline-flex;
 }
 
 .exercises-list li{
   list-style-type: none;
 }
-.friend-request{
-  display: flex;
-  flex-flow : row;
-  align-items: center;
-}
+
 .session-container{
   display: flex;
   flex-direction: column;
@@ -137,7 +125,6 @@ ul{
   border-color: #333333;
   border-style: solid;
   border-width: 1px;
-  margin: 1vw;
 }
 
 .margin-top{
@@ -149,7 +136,11 @@ ul{
 }
 
 .margin-left{
-  margin-left: 0.5vw;
+  margin-left: 5vw;
+}
+
+.margin-right{
+  margin-right: 3.5vw;
 }
 
 //Delete and add button
@@ -161,7 +152,7 @@ ul{
   align-items: center;
   appearance: none;
   background-color: #FCFCFD;
-  border-radius: 0.5vw;
+  border-radius: 4px;
   border-width: 0;
   box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
   box-sizing: border-box;
@@ -169,7 +160,7 @@ ul{
   cursor: pointer;
   display: inline-flex;
   font-family: "JetBrains Mono",monospace;
-  height: 3vw;
+  height: 2vw;
   justify-content: center;
   line-height: 1;
   list-style: none;
@@ -185,10 +176,7 @@ ul{
   touch-action: manipulation;
   white-space: nowrap;
   will-change: box-shadow,transform;
-  font-size: 1.5vw;
-  margin-bottom: 0.7vw;
-  margin-top: 0.7vw;
-  margin-left: 0.7vw;
+  font-size: 1vw;
 }
 
 .button-30:focus {
@@ -203,15 +191,4 @@ ul{
 .button-30:active {
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
-}
-
-.side-by-side{
-  display: inline-flex;
-  align-items: center;
-}
-
-.email-box{
-  height: 3.5vw;
-  width: 17vw;
-  border-radius: 0.4vw;
 }

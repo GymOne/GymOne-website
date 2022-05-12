@@ -2,6 +2,19 @@
   position: absolute;
 }
 
+p{
+  font-size: 1.7vw;
+}
+
+th{
+  font-size: 1.7vw;
+}
+
+svg{
+  width: 2.2vw;
+  height: 2.2vw;
+}
+
 // --- Back ground color and image with animation ---
 .home-img{
   background-image: url("../../assets/images/gymExamBg.jpg");
@@ -37,8 +50,8 @@
 .overflow-down{
   float:left;
   width: 27.5vw;
-  overflow-y: auto;
-  height: 25.5vw;
+  //overflow-y: auto;
+  height: 25vw;
   border-width: 1px;
   border-color: #333333;
 }
@@ -55,13 +68,22 @@
   justify-content: center;
 }
 
+.header-text{
+  font-size: 2.5vw;
+}
+
 /* Create three equal columns that floats next to each other */
 .column {
   float: left;
   width: 50%;
-  padding: 1vw;
+  padding-top: 0.5vw;
   height: 33vw;
   text-align: center;
+  font-size: 1.5vw;
+  background-color: #aaa;
+  h2{
+    font-size: 2.5vw;
+  }
 }
 
 /* Clear floats after the columns */
@@ -119,6 +141,7 @@ span {
   border-color: #333333;
   border-style: solid;
   border-width: 1px;
+  margin: 1vw;
 }
 
 .margin-top{
@@ -138,36 +161,38 @@ span {
 
 
                                                      /* CSS */
-                                                   .button-30 {
-                                                     align-items: center;
-                                                     appearance: none;
-                                                     background-color: #FCFCFD;
-                                                     border-radius: 4px;
-                                                     border-width: 0;
-                                                     box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
-                                                     box-sizing: border-box;
-                                                     color: #36395A;
-                                                     cursor: pointer;
-                                                     display: inline-flex;
-                                                     font-family: "JetBrains Mono",monospace;
-                                                     height: 2vw;
-                                                     justify-content: center;
-                                                     line-height: 1;
-                                                     list-style: none;
-                                                     overflow: hidden;
-                                                     padding-left: 1vw;
-                                                     padding-right: 1vw;
-                                                     position: relative;
-                                                     text-align: left;
-                                                     text-decoration: none;
-                                                     transition: box-shadow .15s,transform .15s;
-                                                     user-select: none;
-                                                     -webkit-user-select: none;
-                                                     touch-action: manipulation;
-                                                     white-space: nowrap;
-                                                     will-change: box-shadow,transform;
-                                                     font-size: 1vw;
-                                                   }
+.button-30 {
+  align-items: center;
+  appearance: none;
+  background-color: #FCFCFD;
+  border-radius: 0.5vw;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395A;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 3vw;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 1.5vw;
+  margin-bottom: 0.7vw;
+  margin-top: 0.7vw;
+}
 
 .button-30:focus {
   box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
@@ -181,4 +206,21 @@ span {
 .button-30:active {
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
+}
+
+.modal-box{
+  margin-top: 15vw;
+  margin-left: 6vw;
+  width: 37vw;
+}
+
+.ex-box{
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  margin: 0.5vw;
+}
+
+.ex-name{
+  font-weight: bold;
 }
