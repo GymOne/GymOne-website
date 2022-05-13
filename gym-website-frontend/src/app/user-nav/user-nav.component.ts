@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Socket} from "ngx-socket-io";
+import {FriendService} from "../shared/services/friend.service";
 
 @Component({
   selector: 'app-user-nav',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserNavComponent implements OnInit {
 
-  constructor() { }
+   online = 0;
 
-  ngOnInit(): void {
+  constructor(private socket:Socket, private friendService:FriendService) { }
+
+  ngOnInit() {
+    this.socket.emit('getMembersOnline',{},(response) =>{
+      this.online = response;
+    });
+    return this.friendService.newMembersOnline().subscribe((data)=>{
+      this.online = data;
+    })
   }
 
 

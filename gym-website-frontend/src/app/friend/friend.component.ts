@@ -25,12 +25,8 @@ export class FriendComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-   /* for (let i = 0; i <this.friendService.getRequests().length ; i++) {
-      this.$list.append('<li><h2>' + this.list[i].senderId + '</h2></li>');
-      this.$list.append('<li><p>' + this.list[i].receiverId +'</p></li>');
-      this.$list.append('<li><p>' + this.list[i].isAccepted + '</p></li>');
-    } */
+  ngOnInit() {
+
   }
 
   getFriendRequests() {
@@ -85,8 +81,8 @@ export class FriendComponent implements OnInit {
     if(this.email != searchEmail && searchEmail != ""){
         let friendDto: FriendDto  =
           { senderId: this.email, receiverEmail: searchEmail, isAccepted: false}
-
-        this.friendService.makeRequest(friendDto).subscribe((data =>{console.log(data)}))
+console.log(friendDto)
+        this.friendService.makeRequest(friendDto);
      }
   }
 

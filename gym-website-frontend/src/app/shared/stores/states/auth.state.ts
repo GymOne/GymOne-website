@@ -8,6 +8,7 @@ import {TokenDto} from "../../dtos/token.dto";
 import {Router} from "@angular/router";
 import {User} from "../../entities/user.entity";
 import jwt_decode from "jwt-decode";
+import {Socket} from "ngx-socket-io";
 
 export class AuthStateModel {
   user:User;
@@ -43,12 +44,13 @@ export class AuthState {
     return !!state.user.token;
   }
 
-  constructor(private authService: AuthService, private _router: Router) {}
+  constructor(private authService: AuthService, private _router: Router, private socket:Socket) {}
 
   @Action(Login)
   login(ctx: StateContext<AuthStateModel>, action: Login) {
     return this.authService.login(action.payload).pipe(tap((result: TokenDto)=>{
       const decoded = jwt_decode(result.token)['user'] as User;
+      this.socket.emit('connectUser',decoded.email);
       ctx.patchState({
         user: {
           id: decoded.id,

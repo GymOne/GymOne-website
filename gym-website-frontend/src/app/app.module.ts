@@ -21,6 +21,11 @@ import {TrackingState} from "./shared/stores/states/tracking.state";
 import {ExerciseState} from "./shared/stores/states/exercise.state";
 import { ProfileComponent } from './profile/profile.component';
 import {FriendComponent} from "./friend/friend.component";
+import {SocketIoModule, SocketIoConfig} from "ngx-socket-io";
+import {SimpleNotificationsModule} from "angular2-notifications";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
+const config: SocketIoConfig = {url: 'http://localhost:3000',options:{}}
 
 @NgModule({
   declarations: [
@@ -41,13 +46,15 @@ import {FriendComponent} from "./friend/friend.component";
     HttpClientModule,
     FormsModule,
     NgbModule,
+    SimpleNotificationsModule.forRoot(),
+    BrowserAnimationsModule,
     NgxsModule.forRoot([AuthState,TrackingState,ExerciseState], {
       developmentMode: !environment.production
     }),
     NgxsStoragePluginModule.forRoot({
       key: 'auth.user'
-    })
-
+    }),
+    SocketIoModule.forRoot(config)
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
