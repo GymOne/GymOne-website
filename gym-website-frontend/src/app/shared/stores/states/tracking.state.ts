@@ -80,7 +80,7 @@ export class TrackingState {
         ctx.patchState({
           workoutSession:createdSession
         });
-        this._workoutService.createExerciseInSession(state.workoutSession._id,action.exerciseId).subscribe(value => {this.store.dispatch(new LoadWorkout(state.selectedDate))});
+        this._workoutService.createExerciseInSession(createdSession._id,action.exerciseId).subscribe(value => {this.store.dispatch(new LoadWorkout(state.selectedDate))});
       });
     }else{
       this._workoutService.createExerciseInSession(state.workoutSession._id,action.exerciseId).subscribe(value => {this.store.dispatch(new LoadWorkout(state.selectedDate))});
