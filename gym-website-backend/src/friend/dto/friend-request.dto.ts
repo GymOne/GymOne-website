@@ -4,7 +4,7 @@ export class FriendRequestDto {
   @ApiProperty()
   senderId: string;
   @ApiProperty()
-  receiverEmail: string;
+  receiverId: string;
   @ApiProperty()
   isAccepted: boolean;
 }

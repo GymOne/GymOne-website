@@ -45,11 +45,11 @@ export class FriendService {
     console.log('response obj from swagger     ' + response);
     const result = await this.getEntryByEmails(
       response.senderId,
-      response.receiverEmail,
+      response.receiverId,
     );
     if (result && response.isAccepted) {
       await this.friendModel.updateOne(
-        { senderId: response.senderId, receiverId: response.receiverEmail },
+        { senderId: response.senderId, receiverId: response.receiverId },
         {
           $set: { isAccepted: true },
           $currentDate: { lastModified: true },
@@ -68,7 +68,11 @@ export class FriendService {
   async removeRequest(response: FriendRequestDto): Promise<boolean> {
     await this.friendModel.deleteOne({
       senderId: response.senderId,
-      receiverId: response.receiverEmail,
+      receiverId: response.receiverId,
+    });
+    await this.friendModel.deleteOne({
+      senderId: response.receiverId,
+      receiverId: response.senderId,
     });
     return true;
   }

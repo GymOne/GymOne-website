@@ -1,5 +1,5 @@
 export interface FriendDto{
   senderId: string;
-  receiverEmail: string;
+  receiverId: string;
   isAccepted: boolean;
 }

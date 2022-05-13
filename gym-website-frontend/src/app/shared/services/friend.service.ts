@@ -25,23 +25,34 @@ export class FriendService {
     return this._http.get<string>('http://localhost:3000/user/getByEmail/'+ email)
   }
   public acceptFriend(friendRequest: FriendDto) {
-    console.log('Just before sending  '+ friendRequest.isAccepted, friendRequest.senderId, friendRequest.receiverEmail)
+    console.log('Just before sending  '+ friendRequest.isAccepted, friendRequest.senderId, friendRequest.receiverId)
     return this._http.post<FriendDto>('http://localhost:3000/friend/actionOnRequet/', friendRequest)
   }
 
   public deleteFriend(friendRequest: FriendDto) {
-    console.log('Just before sending  '+ friendRequest.isAccepted, friendRequest.senderId, friendRequest.receiverEmail)
+    console.log('Just before sending  '+ friendRequest.isAccepted, friendRequest.senderId, friendRequest.receiverId)
     return this._http.post<FriendDto>('http://localhost:3000/friend/removeRequest/', friendRequest)
   }
 
   public makeRequest(friendRequest: FriendDto){
     this.socket.emit('sendFriendRequest',friendRequest);
   }
+
+  public getFriends(email:string){
+    return this.socket.emit('getFriends', email,(friends) =>{
+      return friends;
+    });
+  }
+
   getNewFriendRequest():Observable<string>{
     return this.socket.fromEvent<string>('newFriendRequest');
   }
 
   newMembersOnline():Observable<number>{
     return this.socket.fromEvent<number>('onlineMembers');
+  }
+
+  listenOnlineFriends():Observable<any>{
+    return this.socket.fromEvent<any>('onlineFriends');
   }
 }

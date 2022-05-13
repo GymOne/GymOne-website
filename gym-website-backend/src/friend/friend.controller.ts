@@ -38,7 +38,7 @@ export class FriendController {
   ): Promise<boolean> {
     return this._friendService.submitFriendRequest(
       frRequest.senderId,
-      frRequest.receiverEmail,
+      frRequest.receiverId,
       frRequest.isAccepted,
     );
   }
