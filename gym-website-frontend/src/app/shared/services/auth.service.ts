@@ -5,6 +5,8 @@ import { TokenDto } from '../dtos/token.dto'
 import { Observable, of } from 'rxjs'
 import { environment } from '../../../environments/environment'
 import {RegisterDto} from "../dtos/register.dto";
+import {FriendDto} from "../dtos/friend.dto";
+import {Socket} from "ngx-socket-io";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,7 @@ export class AuthService {
     return this._http
       .post<TokenDto>(environment.api +'/auth/login',loginDto);
   }
+
   register(registerDto: RegisterDto) {
     return this._http
       .post(environment.api + '/auth/register', registerDto);

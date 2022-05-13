@@ -4,6 +4,7 @@ import {AuthState} from "../shared/stores/states/auth.state";
 import {BehaviorSubject} from "rxjs";
 import {Logout} from "../shared/stores/actions/auth.action";
 import {Router} from "@angular/router";
+import {Socket} from "ngx-socket-io";
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private store: Store,private router:Router) {
+  constructor(private store: Store,private router:Router, private socket:Socket) {
   }
 
   ngOnInit(): void {
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit {
 
   Logout() {
     this.store.dispatch(new Logout()).subscribe(success => {
+      this.socket.emit('logout');
       this.router.navigate(['/auth/log-reg'])
     });
   }

@@ -75,7 +75,6 @@ export class FriendService {
 
   private checkOposit(senderId: string, receiverId: string) {
     [senderId, receiverId] = [receiverId, senderId];
-    console.log('sender:  ' + senderId + '  receiver:  ' + receiverId);
     this.getEntryByEmails(senderId, receiverId);
     return false;
   }
