@@ -6,6 +6,7 @@ import { User } from '../users/entities/user.entity';
 import { FriendStatusDto } from './dto/friend-status.dto';
 import { promises } from 'dns';
 import { response } from 'express';
+import any = jasmine.any;
 
 @Injectable()
 export class FriendService {
@@ -89,5 +90,27 @@ export class FriendService {
       .find({ $or: [{ senderId: userEmail }, { receiverId: userEmail }] })
       .exec();
     return res.then();
+  }
+
+  async getFriendsByEmail(userEmail: string): Promise<void[]> {
+    const res = await this.friendModel
+      .find({
+        $or: [
+          { senderId: userEmail },
+          { receiverId: userEmail },
+          { isAccepted: true },
+        ],
+      })
+      .exec();
+    console.log(res);
+    const result = res.map((friend) => {
+      const mg: FriendRequestDto = {
+        senderId: friend.senderId.toString(),
+        receiverId: friend.senderId.toString(),
+        isAccepted: friend.isAccepted,
+      };
+    });
+    console.log(result);
+    return result;
   }
 }

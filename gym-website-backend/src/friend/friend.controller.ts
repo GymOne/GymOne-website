@@ -32,6 +32,11 @@ export class FriendController {
     return this._friendService.getRequestsByEmail(userEmail);
   }
 
+  @Get('getFriendsByEmail/:userEmail')
+  getFriendsByEmail(@Param('userEmail') userEmail: string): any {
+    return this._friendService.getFriendsByEmail(userEmail);
+  }
+
   @Post('submitRequest')
   async submitFriendRequest(
     @Body() frRequest: FriendRequestDto,
