@@ -6,11 +6,14 @@ import { User } from '../users/entities/user.entity';
 import { FriendStatusDto } from './dto/friend-status.dto';
 import { promises } from 'dns';
 import { response } from 'express';
+import any = jasmine.any;
+import { UserService } from '../users/user.service';
 
 @Injectable()
 export class FriendService {
   constructor(
     @Inject('FRIEND_MODEL') private readonly friendModel: Model<FriendEntity>,
+    private readonly userService: UserService,
   ) {}
 
   async submitFriendRequest(
@@ -19,7 +22,7 @@ export class FriendService {
     isAccepted: boolean,
   ): Promise<boolean> {
     //Check for the existing request from other user
-    if (this.checkOposit(senderId, receiverId)) {
+    if (await this.checkOposit(senderId, receiverId)) {
       return false;
     }
     const object = await this.getEntryByEmails(senderId, receiverId);
@@ -77,10 +80,12 @@ export class FriendService {
     return true;
   }
 
-  private checkOposit(senderId: string, receiverId: string) {
+  private async checkOposit(senderId: string, receiverId: string) {
     [senderId, receiverId] = [receiverId, senderId];
-    this.getEntryByEmails(senderId, receiverId);
-    return false;
+    if ((await this.getEntryByEmails(senderId, receiverId)) == null) {
+      return false;
+    }
+    return true;
   }
 
   getRequestsByEmail(userEmail: string): Promise<FriendRequestDto[]> {
@@ -89,5 +94,30 @@ export class FriendService {
       .find({ $or: [{ senderId: userEmail }, { receiverId: userEmail }] })
       .exec();
     return res.then();
+  }
+
+  async getFriendsByEmail(userEmail: string): Promise<any> {
+    const friends = [];
+    const requests = await this.getRequestsByEmail(userEmail);
+    console.log(requests);
+    for (const request of requests) {
+      let friend;
+      if (request.isAccepted) {
+        if (request.senderId == userEmail) {
+          const userObj = await this.userService.findByEmail(
+            request.receiverId,
+          );
+          if (userObj != null) {
+            friend = { name: userObj.name, friendEmail: request.receiverId };
+          }
+        } else {
+          const userObj = await this.userService.findByEmail(request.senderId);
+          console.log(userObj);
+          friend = { name: userObj.name, friendEmail: request.senderId };
+        }
+        friends.push(friend);
+      }
+    }
+    return friends;
   }
 }
