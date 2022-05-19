@@ -7,11 +7,13 @@ import { FriendStatusDto } from './dto/friend-status.dto';
 import { promises } from 'dns';
 import { response } from 'express';
 import any = jasmine.any;
+import { UserService } from '../users/user.service';
 
 @Injectable()
 export class FriendService {
   constructor(
     @Inject('FRIEND_MODEL') private readonly friendModel: Model<FriendEntity>,
+    private readonly userService: UserService,
   ) {}
 
   async submitFriendRequest(
@@ -94,25 +96,28 @@ export class FriendService {
     return res.then();
   }
 
-  async getFriendsByEmail(userEmail: string): Promise<void[]> {
-    const res = await this.friendModel
-      .find({
-        $or: [
-          { senderId: userEmail },
-          { receiverId: userEmail },
-          { isAccepted: true },
-        ],
-      })
-      .exec();
-    console.log(res);
-    const result = res.map((friend) => {
-      const mg: FriendRequestDto = {
-        senderId: friend.senderId.toString(),
-        receiverId: friend.senderId.toString(),
-        isAccepted: friend.isAccepted,
-      };
-    });
-    console.log(result);
-    return result;
+  async getFriendsByEmail(userEmail: string): Promise<any> {
+    const friends = [];
+    const requests = await this.getRequestsByEmail(userEmail);
+    console.log(requests);
+    for (const request of requests) {
+      let friend;
+      if (request.isAccepted) {
+        if (request.senderId == userEmail) {
+          const userObj = await this.userService.findByEmail(
+            request.receiverId,
+          );
+          if (userObj != null) {
+            friend = { name: userObj.name, friendEmail: request.receiverId };
+          }
+        } else {
+          const userObj = await this.userService.findByEmail(request.senderId);
+          console.log(userObj);
+          friend = { name: userObj.name, friendEmail: request.senderId };
+        }
+        friends.push(friend);
+      }
+    }
+    return friends;
   }
 }
