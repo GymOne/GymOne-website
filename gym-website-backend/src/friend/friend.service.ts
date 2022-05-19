@@ -20,7 +20,7 @@ export class FriendService {
     isAccepted: boolean,
   ): Promise<boolean> {
     //Check for the existing request from other user
-    if (this.checkOposit(senderId, receiverId)) {
+    if (await this.checkOposit(senderId, receiverId)) {
       return false;
     }
     const object = await this.getEntryByEmails(senderId, receiverId);
@@ -78,10 +78,12 @@ export class FriendService {
     return true;
   }
 
-  private checkOposit(senderId: string, receiverId: string) {
+  private async checkOposit(senderId: string, receiverId: string) {
     [senderId, receiverId] = [receiverId, senderId];
-    this.getEntryByEmails(senderId, receiverId);
-    return false;
+    if ((await this.getEntryByEmails(senderId, receiverId)) == null) {
+      return false;
+    }
+    return true;
   }
 
   getRequestsByEmail(userEmail: string): Promise<FriendRequestDto[]> {
