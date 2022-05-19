@@ -1,10 +1,9 @@
-import { Inject, Injectable, Logger } from '@nestjs/common';
-import { CreateWorkoutExerciseSetDto } from './dto/create-workout-exercise-set.dto';
-import { Model } from 'mongoose';
-import { CreateWorkoutSessionDto } from './dto/create-workout-session.dto';
-import { WorkoutSession } from './entities/workout.session.entity';
-import { CreateWorkoutExerciseDto } from './dto/create-workout-exercise.dto';
-import { exec } from 'child_process';
+import { Inject, Injectable } from "@nestjs/common";
+import { CreateWorkoutExerciseSetDto } from "./dto/create-workout-exercise-set.dto";
+import { Model } from "mongoose";
+import { CreateWorkoutSessionDto } from "./dto/create-workout-session.dto";
+import { WorkoutSession } from "./entities/workout.session.entity";
+import { CreateWorkoutExerciseDto } from "./dto/create-workout-exercise.dto";
 
 @Injectable()
 export class WorkoutService {
@@ -58,8 +57,28 @@ export class WorkoutService {
       .findOne({
         userId: userId,
         date: date,
-      }).populate('workouts.exercise')
+      })
+      .populate('workouts.exercise')
       .exec();
+  }
+
+  async getWorkoutExerciseById(id: string) {
+    const session = (await this.workoutModel
+      .findOne(
+        { 'workouts._id': id },
+        {
+          workouts: {
+            $elemMatch: { _id: id },
+          },
+        },
+      )
+      .populate('workouts.exercise')
+      .exec()) as WorkoutSession;
+
+    if (session == null) {
+      return;
+    }
+    return session.workouts[0];
   }
 
   async removeExerciseById(id: string) {
@@ -76,5 +95,4 @@ export class WorkoutService {
       )
       .exec();
   }
-
 }

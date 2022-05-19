@@ -37,6 +37,12 @@ export class WorkoutController {
   removeExerciseSetById(@Param('id') id: string) {
     return this.workoutService.removeExerciseSetById(id);
   }
+
+  @Get('exercise/getById/:id')
+  GetWorkoutExerciseById(@Param('id') id: string) {
+    return this.workoutService.getWorkoutExerciseById(id);
+  }
+
   @Post('exercise')
   CreateWorkoutExercise(
     @Body() createWorkoutExerciseDto: CreateWorkoutExerciseDto,
