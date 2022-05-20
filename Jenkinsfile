@@ -1,5 +1,6 @@
 pipeline {
   agent any
+  stages{
       stage("Build Backend"){
       steps{
         dir("gym-website-backend"){
@@ -18,17 +19,5 @@ pipeline {
             }
           }
         }
-/*
-             stage("Deploy") {
-                  steps{
-                    sh "docker-compose --env-file Config/Test.env up -d"
-                  }
-                  }
-
-                        stage("Push to registry"){
-                          steps{
-                              sh "docker-compose --env-file Config/Test.env push"
-                            }
-                            }
-*/
+        }
   }
