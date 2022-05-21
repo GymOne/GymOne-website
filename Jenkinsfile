@@ -1,8 +1,13 @@
 pipeline {
   agent any
+
+  triggers {
+    pollSCM("H/5 * * * *")
+  }
+
   stages{
       stage("Build Backend"){
-      steps{
+          steps{
         dir("gym-website-backend"){
         sh "npm install"
         sh "npm run build"
@@ -22,7 +27,7 @@ pipeline {
         }
 
       stage("Clean containers") {
-            steps {
+          steps {
                 script {
                     try {
                         sh "docker-compose --env-file Config/Test.env down"
@@ -39,7 +44,7 @@ pipeline {
           }
 
       stage("Push to registry"){
-        steps{
+          steps{
             sh "docker-compose --env-file Config/Test.env push"
           }
           }
