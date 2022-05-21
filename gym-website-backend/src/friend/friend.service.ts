@@ -8,6 +8,7 @@ import { promises } from 'dns';
 import { response } from 'express';
 import any = jasmine.any;
 import { UserService } from '../users/user.service';
+import { GetFr_wNames } from './dto/getFr_wNames';
 
 @Injectable()
 export class FriendService {
@@ -119,5 +120,27 @@ export class FriendService {
       }
     }
     return friends;
+  }
+
+  async getRequestsWithNames(userEmail: string): Promise<GetFr_wNames[]> {
+    const friendRequestList: GetFr_wNames[] = [];
+    const requests = await this.getRequestsByEmail(userEmail);
+    for (const request of requests) {
+      let friendRequest: GetFr_wNames;
+      if (!request.isAccepted) {
+        if (request.receiverId == userEmail) {
+          const userObj = await this.userService.findByEmail(request.senderId);
+          if (userObj != null) {
+            friendRequest = {
+              id: userObj.id.toString(),
+              name: userObj.name,
+              email: request.receiverId,
+            };
+          }
+          friendRequestList.push(friendRequest);
+        }
+      }
+    }
+    return friendRequestList;
   }
 }
