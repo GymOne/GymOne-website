@@ -8,6 +8,7 @@ import {
   HttpStatus,
   Param,
   ParseArrayPipe,
+  Patch,
   Post,
   Query,
 } from '@nestjs/common';
@@ -17,6 +18,7 @@ import { UserService } from '../users/user.service';
 import { FriendStatusDto } from './dto/friend-status.dto';
 import { query } from 'express';
 import * as http from 'http';
+import { GetFr_wNames } from './dto/getFr_wNames';
 
 @Controller('friend')
 export class FriendController {
@@ -62,5 +64,12 @@ export class FriendController {
     const actionResult = this._friendService.respondFriendRequest(frRequest);
     if (actionResult == null) throw new Error('Action was not successful');
     return true;
+  }
+
+  @Get('getNamesForRequests/:userEmail')
+  async getNamesForRequests(
+    @Param('userEmail') userEmail: string,
+  ): Promise<GetFr_wNames[]> {
+    return this._friendService.getRequestsWithNames(userEmail);
   }
 }
