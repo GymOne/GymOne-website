@@ -1,0 +1,14 @@
+pipeline {
+  agent any
+  parameters {
+      run filter: 'SUCCESSFUL', name: 'PROMOTED_BUILD', projectName: 'GymOne'
+  }
+  stages {
+    stage("Deploy to production"){
+      steps {
+        sh "docker-compose --env-file Config/Prod.env pull"
+        sh "docker-compose --env-file Config/Prod.env up -d"
+      }
+    }
+  }
+}
