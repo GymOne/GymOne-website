@@ -59,7 +59,6 @@ export class WorkoutController {
   CreateWorkoutSession(
     @Body() createWorkoutSessionDto: CreateWorkoutSessionDto,
   ) {
-    console.log(createWorkoutSessionDto);
     return this.workoutService.createWorkoutSession(createWorkoutSessionDto);
   }
 }

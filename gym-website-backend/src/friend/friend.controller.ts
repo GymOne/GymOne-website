@@ -60,7 +60,7 @@ export class FriendController {
   async respondFriendRequest(
     @Body() frRequest: FriendRequestDto,
   ): Promise<boolean> {
-    console.log(frRequest);
+    console.log('Api end Point   ' + frRequest);
     const actionResult = this._friendService.respondFriendRequest(frRequest);
     if (actionResult == null) throw new Error('Action was not successful');
     return true;
