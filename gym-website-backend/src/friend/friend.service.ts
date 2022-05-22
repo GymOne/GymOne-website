@@ -22,19 +22,21 @@ export class FriendService {
     receiverId: string,
     isAccepted: boolean,
   ): Promise<boolean> {
-    //Check for the existing request from other user
-    if (await this.checkOposit(senderId, receiverId)) {
-      return false;
-    }
+    //Check for the existing request from other user, same receiver and does receiver exist
+    const user = await this.userService.findByEmail(receiverId);
+    if (!user) return false;
+    if (await this.checkOposit(senderId, receiverId)) return false;
+    if (senderId === receiverId) return false;
     const object = await this.getEntryByEmails(senderId, receiverId);
     if (object) return false;
+
     const newRequestEntity = await new this.friendModel({
       senderId: senderId,
       receiverId: receiverId,
       isAccepted: false,
     });
     newRequestEntity.save();
-    return false;
+    return true;
   }
 
   async getEntryByEmails(
@@ -46,7 +48,7 @@ export class FriendService {
       .exec();
   }
   async respondFriendRequest(response: FriendRequestDto): Promise<boolean> {
-    console.log('response obj from swagger     ' + response);
+    console.log('Object received in the service     ' + response);
     const result = await this.getEntryByEmails(
       response.senderId,
       response.receiverId,
@@ -62,10 +64,8 @@ export class FriendService {
       return true;
     }
     if (result && !response.isAccepted) {
-      console.log('tried to remove');
       return this.removeRequest(response);
     }
-    //console.log('Should get something if all good   ' + result);
     if (!result) return null;
   }
 
@@ -100,7 +100,6 @@ export class FriendService {
   async getFriendsByEmail(userEmail: string): Promise<any> {
     const friends = [];
     const requests = await this.getRequestsByEmail(userEmail);
-    console.log(requests);
     for (const request of requests) {
       let friend;
       if (request.isAccepted) {
@@ -113,7 +112,6 @@ export class FriendService {
           }
         } else {
           const userObj = await this.userService.findByEmail(request.senderId);
-          console.log(userObj);
           friend = { name: userObj.name, friendEmail: request.senderId };
         }
         friends.push(friend);
@@ -127,18 +125,16 @@ export class FriendService {
     const requests = await this.getRequestsByEmail(userEmail);
     for (const request of requests) {
       let friendRequest: GetFr_wNames;
-      if (!request.isAccepted) {
-        if (request.receiverId == userEmail) {
-          const userObj = await this.userService.findByEmail(request.senderId);
-          if (userObj != null) {
-            friendRequest = {
-              id: userObj.id.toString(),
-              name: userObj.name,
-              email: request.receiverId,
-            };
-          }
-          friendRequestList.push(friendRequest);
+      if (!request.isAccepted && request.senderId != userEmail) {
+        const userObj = await this.userService.findByEmail(request.senderId);
+        if (userObj != null) {
+          friendRequest = {
+            id: userObj.id.toString(),
+            name: userObj.name,
+            email: request.senderId,
+          };
         }
+        friendRequestList.push(friendRequest);
       }
     }
     return friendRequestList;
