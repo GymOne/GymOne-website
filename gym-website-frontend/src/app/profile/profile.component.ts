@@ -3,6 +3,8 @@ import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
 import {Observable, Subscription} from "rxjs";
 import {HttpClient, HttpEventType} from "@angular/common/http";
 import {finalize} from "rxjs/operators";
+import {ProfileService} from "../shared/services/profile.service";
+import {AuthState} from "../shared/stores/states/auth.state";
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +22,7 @@ export class ProfileComponent implements OnInit {
   uploadProgress:number;
   uploadSub: Subscription;
 
-  constructor() {}
+  constructor(private _profileService: ProfileService, private _userData: AuthState) {}
 
   ngOnInit(): void {
   }
@@ -28,7 +30,12 @@ export class ProfileComponent implements OnInit {
 
   onFileSelected(event) {
     const file:File = event.target.files[0];
+    let formData = new FormData()
+    formData.append("image", file, file.name)
     console.log(file.name)
+    this._profileService.uploadProfilePicture(formData).subscribe(value => {
+      console.log(value)
+    })
 
   }
 

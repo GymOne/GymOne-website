@@ -4,7 +4,10 @@ import { User } from './entities/user.entity';
 
 @Injectable()
 export class UserService {
-  constructor(@Inject('USER_MODEL') private readonly userModel: Model<User>) {}
+  constructor(
+    @Inject('USER_MODEL')
+    private readonly userModel: Model<User>,
+  ) {}
 
   async _getUserDetails(user: User): Promise<User> {
     return {
