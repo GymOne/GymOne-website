@@ -43,11 +43,11 @@ pipeline {
           }
           }
 
-      // stage("Push to registry"){
-      //     steps{
-      //       sh "docker-compose --env-file Config/Test.env push"
-      //     }
-      //     }
+      stage("Push to registry"){
+          steps{
+            sh "docker-compose --env-file Config/Test.env push"
+          }
+          }
 
         }
   }

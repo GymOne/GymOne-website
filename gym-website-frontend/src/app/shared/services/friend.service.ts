@@ -18,20 +18,20 @@ export class FriendService {
   }
 
   public getRequests(email: string): Observable<FriendDto[]> {
-    return this._http.get<FriendDto[]>('http://localhost:3000/friend/getRequestsByEmail/' + email)
+    return this._http.get<FriendDto[]>(environment.api +'/friend/getRequestsByEmail/' + email)
   }
 
   public getUsersByEmail(email: string) : Observable<string>{
-    return this._http.get<string>('http://localhost:3000/user/getByEmail/'+ email)
+    return this._http.get<string>(environment.api +'/user/getByEmail/'+ email)
   }
   public acceptFriend(friendRequest: FriendDto) {
     console.log('Just before sending  '+ friendRequest.isAccepted, friendRequest.senderId, friendRequest.receiverId)
-    return this._http.post<FriendDto>('http://localhost:3000/friend/actionOnRequet/', friendRequest)
+    return this._http.post<FriendDto>(environment.api +'/friend/actionOnRequet/', friendRequest)
   }
 
   public deleteFriend(friendRequest: FriendDto) {
     console.log('Just before sending  '+ friendRequest.isAccepted, friendRequest.senderId, friendRequest.receiverId)
-    return this._http.post<FriendDto>('http://localhost:3000/friend/removeRequest/', friendRequest)
+    return this._http.post<FriendDto>(environment.api +'/friend/removeRequest/', friendRequest)
   }
 
   public makeRequest(friendRequest: FriendDto){
