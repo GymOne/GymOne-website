@@ -15,37 +15,37 @@ export class WorkoutService{
   }
 
   public getWorkoutSession(userId:string,date:Date):Observable<workoutSession>{
-    return this._http.get<workoutSession>(`http://localhost:3000/workout/session/${userId}/${date}`);
+    return this._http.get<workoutSession>(environment.api +`/workout/session/${userId}/${date}`);
   }
   public deleteExercise(exerciseId:string){
-    return this._http.delete(`http://localhost:3000/exercise/deleteById/${exerciseId}`);
+    return this._http.delete(environment.api +`/exercise/deleteById/${exerciseId}`);
   }
 
   public createWorkoutSession(userId:string,date:Date):Observable<workoutSession>{
-    return this._http.post<workoutSession>(`http://localhost:3000/workout/session`,{userId: userId,date:date});
+    return this._http.post<workoutSession>(environment.api +'/workout/session',{userId: userId,date:date});
   }
 
   public createExerciseInSession(sessionId: string, exerciseId:string){
-    return this._http.post('http://localhost:3000/workout/exercise',{workoutSessionId:sessionId,exerciseId:exerciseId});
+    return this._http.post(environment.api +'/workout/exercise',{workoutSessionId:sessionId,exerciseId:exerciseId});
   }
 
   public getExercises(userId:string):Observable<exercise[]>{
-    return this._http.get<exercise[]>(`http://localhost:3000/exercise/findByUserId/${userId}`);
+    return this._http.get<exercise[]>(environment.api +`/exercise/findByUserId/${userId}`);
   }
 
   public createExercise(userId:string, name:string){
-    return this._http.post(`http://localhost:3000/exercise/create`, {userId:userId,name:name});
+    return this._http.post(environment.api +'/exercise/create', {userId:userId,name:name});
   }
 
   public createExerciseSet(workoutExerciseId: string, weight: string, reps: string){
-    return this._http.post(`http://localhost:3000/workout/exercise/set`,{workoutExerciseId:workoutExerciseId, weight:weight, reps:reps})
+    return this._http.post(environment.api +'/workout/exercise/set',{workoutExerciseId:workoutExerciseId, weight:weight, reps:reps})
   }
 
   public deleteWorkoutExerciseSetById(_id:string){
-    return this._http.delete(`http://localhost:3000/workout/exercise/set/deleteById/${_id}`);
+    return this._http.delete(environment.api +`/workout/exercise/set/deleteById/${_id}`);
   }
 
   public deleteWorkoutExercises(exerciseId:string){
-    return this._http.delete(`http://localhost:3000/workout/exercise/deleteById/${exerciseId}`);
+    return this._http.delete(environment.api +`/workout/exercise/deleteById/${exerciseId}`);
   }
 }
