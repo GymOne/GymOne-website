@@ -1,3 +1,4 @@
 FROM node:16-alpine AS production
-WORKDIR /app
+WORKDIR /usr/src/app
 COPY . .
+CMD [ "node","dist/main" ]
