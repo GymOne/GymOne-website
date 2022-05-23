@@ -7,6 +7,9 @@ pipeline {
 
   stages{
       stage("Build Backend"){
+                  when {
+            changeset "gym-website-backend/**"
+          }
           steps{
         dir("gym-website-backend"){
         sh "npm install"
@@ -17,6 +20,9 @@ pipeline {
     }
 
       stage("Build Frontend"){
+          when {
+            changeset "gym-website-frontend/**"
+          }
           steps{
             dir("gym-website-frontend"){
               sh "npm update --force"
