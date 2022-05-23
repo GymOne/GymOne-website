@@ -21,8 +21,8 @@ services:
     depends_on:
       - db
   db:
-    image: mongo:latest
-    container_name: "db"
+    image: mongo:4.4.6
+    container_name: "${DB_CONT_NAME}"
     ports:
       - 27017:27017
     restart: always
