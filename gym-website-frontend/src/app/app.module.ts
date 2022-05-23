@@ -26,13 +26,14 @@ import {SimpleNotificationsModule} from "angular2-notifications";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppLoaderService} from "./app-loader.service";
 
-const config: SocketIoConfig = {url: environment.api,options:{}}
+let config: SocketIoConfig;
 
 export function appLoader(appLoader: AppLoaderService) {
   return () => {
     if (environment.production) {
       appLoader.initialize();
     }
+    config = {url: environment.api,options:{}}
     return Promise.resolve();
   };
 }
