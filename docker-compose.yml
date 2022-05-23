@@ -22,7 +22,7 @@ services:
       - db
   db:
     image: mongo:latest
-    container_name: "mongodb"
+    container_name: "db"
     ports:
       - 27017:27017
     restart: always
