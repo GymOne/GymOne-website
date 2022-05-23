@@ -1,4 +1,4 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
+import {APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,8 +24,18 @@ import {FriendComponent} from "./friend/friend.component";
 import {SocketIoModule, SocketIoConfig} from "ngx-socket-io";
 import {SimpleNotificationsModule} from "angular2-notifications";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AppLoaderService} from "./app-loader.service";
 
 const config: SocketIoConfig = {url: environment.api,options:{}}
+
+export function appLoader(appLoader: AppLoaderService) {
+  return () => {
+    if (environment.production) {
+      appLoader.initialize();
+    }
+    return Promise.resolve();
+  };
+}
 
 @NgModule({
   declarations: [
@@ -56,7 +66,12 @@ const config: SocketIoConfig = {url: environment.api,options:{}}
     }),
     SocketIoModule.forRoot(config)
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,{
+    provide: APP_INITIALIZER,
+    useFactory: appLoader,
+    deps: [AppLoaderService],
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
