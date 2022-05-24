@@ -72,7 +72,7 @@ export function appLoader(appLoader: AppLoaderService) {
     NgxsStoragePluginModule.forRoot({
       key: 'auth.user'
     }),
-    SocketIoModule.forRoot(socketConfigOptions)
+    SocketIoModule.forRoot({options: {}, url: environment.api})
   ],
   bootstrap: [AppComponent]
 })
