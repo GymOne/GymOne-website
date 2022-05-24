@@ -25,8 +25,4 @@ import { ConfigModule } from '@nestjs/config';
   providers: [],
 })
 export class AppModule {
-  constructor() {
-    console.log('STAGE:');
-    console.log(process.env.STAGE);
-  }
 }
