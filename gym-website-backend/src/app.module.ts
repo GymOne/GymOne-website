@@ -26,5 +26,7 @@ import { ConfigModule } from '@nestjs/config';
 })
 export class AppModule {
   constructor() {
+    console.log("STAGE:");
+    console.log(process.env.STAGE.trim());
   }
 }
