@@ -34,6 +34,7 @@ export function appLoader(appLoader: AppLoaderService) {
   return async () => {
     if (environment.production) {
       await appLoader.initialize();
+      console.log(environment.API_URL)
     }
     return Promise.resolve();
   };
