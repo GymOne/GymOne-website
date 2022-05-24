@@ -12,6 +12,7 @@ export class AppLoaderService {
     let url = '/config/api-url.txt';
     await this.http.get(url, { responseType: 'text' }).toPromise().then(data => {
       environment.api = data
+      console.log(data)
     });
   }
 }
