@@ -4,6 +4,7 @@ import { Model } from "mongoose";
 import { CreateWorkoutSessionDto } from "./dto/create-workout-session.dto";
 import { WorkoutSession } from "./entities/workout.session.entity";
 import { CreateWorkoutExerciseDto } from "./dto/create-workout-exercise.dto";
+import { ConfigService } from "@nestjs/config";
 
 @Injectable()
 export class WorkoutService {
