@@ -18,7 +18,7 @@ import { ConfigModule } from '@nestjs/config';
     FriendModule,
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: `environments/.env.${process.env.STAGE.trim()}`,
+      envFilePath: `environments/.env.${process.env.STAGE}`,
     }),
   ],
   controllers: [],
@@ -27,6 +27,6 @@ import { ConfigModule } from '@nestjs/config';
 export class AppModule {
   constructor() {
     console.log("STAGE:");
-    console.log(process.env.STAGE.trim());
+    console.log(process.env.STAGE);
   }
 }
