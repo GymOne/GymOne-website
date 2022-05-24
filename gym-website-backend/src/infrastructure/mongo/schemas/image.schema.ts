@@ -9,7 +9,8 @@ export const ImageSchema = new Schema({
 });
 
 export const UserImageSchema = new Schema({
-  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  //userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  userId: { type: String, required: true },
   image: [ImageSchema],
 });
 

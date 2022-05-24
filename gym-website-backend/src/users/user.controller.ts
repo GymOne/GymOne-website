@@ -48,14 +48,13 @@ export class UserController {
   uploadFile(
     @UploadedFile() file: Express.Multer.File,
   ): Promise<Express.Multer.File> {
-    console.log(file);
     this._imageServ.uploadImage(file);
     return this.fileTest;
   }
 
-  @Get('getMyImage')
+  @Post('getMyImage')
   getImage(): Promise<any> {
-    //console.log(this.fileTest);
-    return null;
+    console.log('Waow');
+    return this._imageServ.getImage();
   }
 }

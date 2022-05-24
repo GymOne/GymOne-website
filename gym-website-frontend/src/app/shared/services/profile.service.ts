@@ -13,4 +13,8 @@ export class ProfileService {
   public uploadProfilePicture(file: any): Observable<Boolean>{
     return this._http.post<Boolean>('http://localhost:3000/user/uploadProfileImage', file)
   }
+
+  getImage(): Observable<any> {
+    return this._http.post<any>('http://localhost:3000/user/getMyImage', null)
+  }
 }

@@ -1,5 +1,5 @@
 export class ImageEntity {
   id?: string;
-  data: string;
+  data: Buffer;
   contentType: string;
 }

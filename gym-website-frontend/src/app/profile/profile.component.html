@@ -22,8 +22,12 @@
           <div class="properties">
             Users email
           </div>
-          <img class="profile-image"
-            src="https://upload.wikimedia.org/wikipedia/commons/2/25/StormTrooper_Blaster.jpg">
+          <button (click)="getImage()" > Oooo Kurva</button>
+          <div *ngIf="imagerrr">
+            <img  [src]="imagerrr" />
+        </div>
+          <img src="data:image/<%=image.img.contentType%>;base64,
+                     <%=image.img.data.toString('base64')%>">
         </div>
       </div>
     </div>
