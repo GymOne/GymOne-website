@@ -26,14 +26,15 @@ import {SimpleNotificationsModule} from "angular2-notifications";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppLoaderService} from "./app-loader.service";
 
-let config: SocketIoConfig;
+export const socketConfigOptions:SocketIoConfig = {
+  options: {}, url: environment.api
+}
 
 export function appLoader(appLoader: AppLoaderService) {
-  return () => {
+  return async () => {
     if (environment.production) {
-      appLoader.initialize();
+      await appLoader.initialize();
     }
-    config = {url: environment.api,options:{}}
     return Promise.resolve();
   };
 }
@@ -50,6 +51,12 @@ export function appLoader(appLoader: AppLoaderService) {
     ProfileComponent,
     FriendComponent,
   ],
+  providers: [AuthGuard,{
+    provide: APP_INITIALIZER,
+    useFactory: appLoader,
+    deps: [AppLoaderService],
+    multi: true,
+  }],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -65,14 +72,10 @@ export function appLoader(appLoader: AppLoaderService) {
     NgxsStoragePluginModule.forRoot({
       key: 'auth.user'
     }),
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(socketConfigOptions)
   ],
-  providers: [AuthGuard,{
-    provide: APP_INITIALIZER,
-    useFactory: appLoader,
-    deps: [AppLoaderService],
-    multi: true,
-  }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}
