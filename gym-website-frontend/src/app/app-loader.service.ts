@@ -8,10 +8,10 @@ import {HttpClient} from "@angular/common/http";
 export class AppLoaderService {
   constructor(private http: HttpClient) {}
 
-  initialize() {
+  async initialize() {
     let url = '/config/api-url.txt';
-    this.http.get(url, { responseType: 'text' }).subscribe((response) => {
-      environment.api = response;
+    await this.http.get(url, { responseType: 'text' }).toPromise().then(data => {
+      environment.api = data
     });
   }
 }
