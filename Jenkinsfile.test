@@ -1,11 +1,15 @@
 pipeline {
   agent any
   stages {
+      stage('Frontend Testing') {
+          steps {
+                sh 'testcafe chromium:headless Tests/testcafe/frontend-test.js'
+            }
+        }
       stage('Stress Testing') {
           steps {
-                sh 'k6 run Tests/loadtests/stress-test.js'
+                sh 'k6 run Tests/load/stress-test.js'
             }
-
         }
   }
 }
