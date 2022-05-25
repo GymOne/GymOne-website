@@ -2,6 +2,63 @@
   position: absolute;
 }
 
+//-------------------------New Design ----------------------//
+
+.profile-container{
+  display: grid;
+  grid-template-columns: 1.5fr 2fr;
+  background-color: #aaa;
+  border-radius: 10px;
+  box-shadow: 0 1vw 1.5vw rgba(0,0,0,0.25),
+  0 1vw 1vw rgba(0,0,0,0.22);
+  position: relative;
+  overflow: hidden;
+  width: 65vw;
+  height: 33vw;
+  margin-top: 11vw;
+  margin-left: 20vw;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+}
+.right-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-right: 40%;
+}
+
+.image-container{
+  background-image: url("../../assets/ProfilePlaceholder.svg");
+  background-repeat: no-repeat;
+  width: 90%;
+  height: 80%;
+}
+
+
+.picture-placeholder{
+
+}
+
+
+
+
+.profile-image{
+  width: 100px;
+  height: auto;
+  background-color: #1ab5c0;
+}
+
+.pruvit{
+  width: 100px;
+  height: 100px;
+  background-color: #3c97bf;
+}
+
 // --- Back ground color and image with animation ---
 .home-img{
   background-image: url("../../assets/images/gymExamBg.jpg");
@@ -60,7 +117,13 @@
 
 .center-div{
   display: flex;
-  justify-content: center;
+  //justify-content: center;
+}
+
+.image-container{
+  justify-content: space-around;
+  height: 200px;
+  padding-bottom: 20px;
 }
 
 /* Create three equal columns that floats next to each other if width 50% or 33% */

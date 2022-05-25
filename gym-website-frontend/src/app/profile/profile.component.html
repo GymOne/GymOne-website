@@ -1,29 +1,64 @@
 <div class="main bg-color"> <img class="home-img">
-
-  <div  class="main-container inner">
-    <div class="row">
-      <div class="column" style="background-color:#aaa;">
-        <h2>Profile</h2>
-
-        <div class="side-by-side properties margin-left">
-          <div class="margin-right">
-            (profile picture here)
-          </div>
-          <div class="form-group">
-            <label for="file"></label>
-            <input type="file" id="file" class="" (change)="onFileSelected($event)">
-          </div>
-        </div>
-
-        <div>
-          <div class="properties">
-            Users Display Name
-          </div>
-          <div class="properties">
-            Users email
-          </div>
-        </div>
+  <div class="profile-container">
+    <div class="left-container">
+      <div class="image-container">
+        <img   *ngIf="imagerrr" class="pruvit" [src]="imagerrr" />
       </div>
+      <div>
+        <input type="file" id="file" class="" (change)="onFileSelected($event)">
+        <button (click)="getImage()">Sheeesh</button>
+      </div>
+    </div>
+    <div class="right-container">
+      <h1>Profile</h1>
+      <h3>Name</h3>
+      <input  type="text" placeholder="Name" value='Ooooooo Kurva' type="text" placeholder="First name (for friends)">
+      <ng-template #loading>
+        Loading stuff...
+      </ng-template>
+      <h3>Email</h3>
+      <input *ngIf="$email | async as em; else loading" type="text" placeholder="Name" value='{{em}}' type="text" placeholder="Email address">
+      <ng-template #loading>
+        Loading stuff...
+      </ng-template>
+      <button (click)="saveChanges()">Save Changes</button>
+
     </div>
   </div>
 </div>
+
+
+
+
+
+
+<!--  <div  class="main-container inner">-->
+<!--    <div class="row">-->
+<!--      <div class="column" style="background-color:#aaa;">-->
+<!--        <div class="image-container">-->
+<!--          <img   *ngIf="imagerrr" class="pruvit" [src]="imagerrr" />-->
+<!--          <h2>Profile</h2>-->
+<!--        </div>-->
+<!--        <div class="side-by-side properties margin-left">-->
+<!--          <div class="margin-right">-->
+<!--            (profile picture here)-->
+<!--          </div>-->
+<!--          <div class="form-group">-->
+<!--            <label for="file"></label>-->
+<!--            <input type="file" id="file" class="" (change)="onFileSelected($event)">-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--          <div class="properties">-->
+<!--            Users Display Name-->
+<!--          </div>-->
+<!--          <div class="properties">-->
+<!--            Users email-->
+<!--          </div>-->
+<!--          <button (click)="getImage()" > Oooo Kurva</button>-->
+
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
