@@ -8,7 +8,7 @@ pipeline {
         }
       stage('Stress Testing') {
           steps {
-                sh 'k6 run Tests/load/stress-test.js'
+                sh 'k6 run Tests/k6/stress-test.js'
             }
         }
   }
