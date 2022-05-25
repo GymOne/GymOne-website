@@ -1,10 +1,10 @@
-import { Inject, Injectable } from "@nestjs/common";
-import { CreateWorkoutExerciseSetDto } from "./dto/create-workout-exercise-set.dto";
-import { Model } from "mongoose";
-import { CreateWorkoutSessionDto } from "./dto/create-workout-session.dto";
-import { WorkoutSession } from "./entities/workout.session.entity";
-import { CreateWorkoutExerciseDto } from "./dto/create-workout-exercise.dto";
-import { ConfigService } from "@nestjs/config";
+import { Inject, Injectable } from '@nestjs/common';
+import { CreateWorkoutExerciseSetDto } from './dto/create-workout-exercise-set.dto';
+import { Model } from 'mongoose';
+import { CreateWorkoutSessionDto } from './dto/create-workout-session.dto';
+import { WorkoutSession } from './entities/workout.session.entity';
+import { CreateWorkoutExerciseDto } from './dto/create-workout-exercise.dto';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class WorkoutService {
@@ -94,6 +94,13 @@ export class WorkoutService {
         { 'workouts.sets._id': id },
         { $pull: { 'workouts.$.sets': { _id: id } } },
       )
+      .exec();
+  }
+
+  async getAllWorkouts() {
+    return await this.workoutModel
+      .find({})
+      .populate('workouts.exercise')
       .exec();
   }
 }

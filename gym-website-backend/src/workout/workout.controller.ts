@@ -43,6 +43,11 @@ export class WorkoutController {
     return this.workoutService.getWorkoutExerciseById(id);
   }
 
+  @Get('workouts')
+  GetWorkouts() {
+    return this.workoutService.getAllWorkouts();
+  }
+
   @Post('exercise')
   CreateWorkoutExercise(
     @Body() createWorkoutExerciseDto: CreateWorkoutExerciseDto,
