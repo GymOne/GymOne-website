@@ -19,6 +19,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { rules } from '@typescript-eslint/eslint-plugin';
 import { UploadUserImageDto } from './dto/upload-user-image.dto';
 import { UserImageService } from './user-image.service';
+import { EmailHolderObject } from './dto/EmailHolderObject';
 
 @Controller('user')
 export class UserController {
@@ -53,8 +54,7 @@ export class UserController {
   }
 
   @Post('getMyImage')
-  getImage(): Promise<any> {
-    console.log('Waow');
-    return this._imageServ.getImage();
+  getImage(@Body() ob: EmailHolderObject): Promise<any> {
+    return this._imageServ.getImage(ob.email);
   }
 }

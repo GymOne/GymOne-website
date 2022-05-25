@@ -15,20 +15,19 @@ export class UserImageService {
     private userService: UserService,
   ) {}
 
-  async getImage() {
-    return this.userImageModel
-      .findOne({ userId: '6286926410a5bbba6938dd02' })
-      .exec();
+  async getImage(email: string) {
+    return this.userImageModel.findOne({ userId: email }).exec();
   }
 
   async uploadImage(file: Express.Multer.File) {
+    console.log(file);
     const imageEnt: ImageEntity = {
       data: fs.readFileSync(file.path),
       contentType: file.mimetype,
     };
     console.log(imageEnt);
     this.userImageModel.create({
-      userId: '6286926410a5bbba6938dd02',
+      userId: file.originalname,
       image: imageEnt,
     });
   }
