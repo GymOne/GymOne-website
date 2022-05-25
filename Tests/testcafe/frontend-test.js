@@ -1,6 +1,6 @@
 import { Selector } from "testcafe";
 
-const APP_BASE_URL = "http://localhost:4200";
+const APP_BASE_URL = "http://185.51.76.122:8090";
 
 let email = "Tester90@gmail.com";
 let password = "Tester90";
