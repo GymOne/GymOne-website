@@ -73,7 +73,8 @@ export function appLoader(appLoader: AppLoaderService) {
       key: 'auth.user'
     }),
     SocketIoModule.forRoot({options: {}, url: environment.api})
-  ]
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 
