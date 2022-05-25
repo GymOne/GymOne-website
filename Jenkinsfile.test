@@ -3,7 +3,7 @@ pipeline {
   stages {
       stage('Frontend Testing') {
           steps {
-                sh 'testcafe chromium:headless Tests/testcafe/frontend-test.js'
+                sh 'testcafe firefox:headless Tests/testcafe/frontend-test.js'
             }
         }
       stage('Stress Testing') {
