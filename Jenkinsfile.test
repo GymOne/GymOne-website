@@ -1,7 +1,7 @@
 pipeline {
   agent any
   stages {
-      stage('Performance Testing') {
+      stage('Stress Testing') {
           steps {
                 sh 'k6 run Tests/loadtests/stress-test.js'
             }
