@@ -1,13 +1,14 @@
 import { Selector } from "testcafe";
 
-const APP_BASE_URL = "http://185.51.76.122:8090";
+const APP_BASE_URL = "http://localhost:4200";
 
 let email = "Tester90@gmail.com";
 let password = "Tester90";
 
 fixture("Register");
-test.page(`${APP_BASE_URL}/auth/log-reg`)("Register an account", async (t) => {
+test.page(APP_BASE_URL)("Register an account", async (t) => {
   await t
+    .click("body > app-root > app-header > div > div > a.pointer")
     .click("#signUp")
     .typeText("#container", email)
     .typeText(
@@ -22,8 +23,9 @@ test.page(`${APP_BASE_URL}/auth/log-reg`)("Register an account", async (t) => {
 });
 
 fixture("Login");
-test.page(`${APP_BASE_URL}/auth/log-reg`)("Login", async (t) => {
+test.page(APP_BASE_URL)("Login", async (t) => {
   await t
+    .click("body > app-root > app-header > div > div > a.pointer")
     .typeText(
       "#container > div.form-container.sign-in-container > form > input:nth-child(4)",
       email
