@@ -1,6 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { User } from './entities/user.entity';
+import { UploadUserImageDto } from './dto/upload-user-image.dto';
+import { UploadMobileDto } from './dto/upload-mobile.dto';
 
 @Injectable()
 export class UserService {
@@ -39,5 +41,12 @@ export class UserService {
       password: hashedPassword,
     });
     return newUser.save();
+  }
+
+  attachImagePath(uploadImage: UploadMobileDto) {
+    this.userModel.updateOne({
+      email: uploadImage.email,
+      mobileImgPath: uploadImage.imagePath,
+    });
   }
 }

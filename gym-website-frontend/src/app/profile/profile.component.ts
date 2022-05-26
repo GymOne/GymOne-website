@@ -54,7 +54,7 @@ export class ProfileComponent implements OnInit {
   getImage(){
     if (this._userData){
       this._profileService.getImage(this.email).subscribe(im => {
-        console.log('My image:  '+im);
+        //console.log('My image:  '+im);
         var byteArray = new Uint8Array(im.image[0].data.data);
         var blob = new Blob([byteArray], { type: 'image/png' });
         this.readAsDataURL(blob).subscribe((data) =>{
@@ -65,7 +65,7 @@ export class ProfileComponent implements OnInit {
         this.imagerrr =base64EncodedStr;
 
         this.imagerrr = btoa( im.image[0].data.data.toString() );
-        console.log(this.imagerrr)
+        //console.log(this.imagerrr)
       })
     }
   }
@@ -75,14 +75,15 @@ export class ProfileComponent implements OnInit {
 
 
   onFileSelected(event) {
-    console.log(event.target.file)
+    //console.log(event.target.file)
     const file:File = event.target.files[0];
+    console.log(file)
     let formData = new FormData()
     if (this.email){
       formData.append('image', file, this.email)
-      console.log(formData)
+      //console.log(formData)
       this._profileService.uploadProfilePicture(formData).subscribe(value => {
-        console.log(value)
+        //onsole.log(value)
       })
     }
   }
