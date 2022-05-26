@@ -15,6 +15,13 @@
   //visibility: inherit;
 }
 
+.app-img{
+  width: 18vw;
+  height: 36vw;
+  margin-top: 10vw;
+  margin-left: 5vw;
+}
+
 .bg-color{
   background-color: #145781;
   position: absolute;
@@ -25,6 +32,25 @@
   background-repeat: no-repeat;
   z-index: -1;
 }
+
+.side-by-side{
+  display: inline-flex;
+  align-items: center;
+}
+
+.ppp{
+  font-family: fantasy;
+  font-weight: bold;
+  color: white;
+  font-size: 5.5vw;
+  width: 39vw;
+  margin-top: 10vw;
+  margin-left: 13vw;
+}
+
+
+
+
 
 .text-focus-in {
   -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;

@@ -15,6 +15,13 @@
   //visibility: inherit;
 }
 
+.app-img{
+  width: 18vw;
+  height: 36vw;
+  margin-top: 10vw;
+  margin-left: 5vw;
+}
+
 .bg-color{
   background-color: #145781;
   position: absolute;
@@ -26,63 +33,51 @@
   z-index: -1;
 }
 
-//
-//.text-focus-in {
-//  -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-//  animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-//}
-//
-//@-webkit-keyframes text-focus-in {
-//  0% {
-//    -webkit-filter: blur(12px);
-//    filter: blur(12px);
-//    opacity: 0;
-//  }
-//  100% {
-//    -webkit-filter: blur(0px);
-//    filter: blur(0px);
-//    opacity: 80%;
-//  }
-//}
-//@keyframes text-focus-in {
-//  0% {
-//    -webkit-filter: blur(12px);
-//    filter: blur(12px);
-//    opacity: 0;
-//  }
-//  100% {
-//    -webkit-filter: blur(0px);
-//    filter: blur(0px);
-//    opacity: 80%;
-//  }
-//}
-
-.tracking-out-contract {
-  -webkit-animation: tracking-out-contract 0.7s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-  animation: tracking-out-contract 0.7s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+.side-by-side{
+  display: inline-flex;
+  align-items: center;
 }
 
-@-webkit-keyframes tracking-out-contract {
+.ppp{
+  font-family: fantasy;
+  font-weight: bold;
+  color: white;
+  font-size: 5.5vw;
+  width: 39vw;
+  margin-top: 10vw;
+  margin-left: 13vw;
+}
+
+
+
+
+
+.text-focus-in {
+  -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@-webkit-keyframes text-focus-in {
   0% {
-    opacity: 80%;
-  }
-  50% {
-    opacity: 40%;
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
   }
   100% {
-    letter-spacing: -0.5em;
-    opacity: 0%;
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 80%;
   }
 }
-@keyframes tracking-out-contract {
+@keyframes text-focus-in {
   0% {
-    opacity: 80%;
-  }
-  50% {
-    opacity: 40%;
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
   }
   100% {
-    letter-spacing: -0.5em;
-    opacity: 0%;
+    -webkit-filter: blur(0px);
+    filter: blur(0px);
+    opacity: 80%;
   }
 }
