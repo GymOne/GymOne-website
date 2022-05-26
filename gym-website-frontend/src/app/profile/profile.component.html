@@ -1,27 +1,52 @@
 <div class="main bg-color"> <img class="home-img">
   <div class="profile-container">
+
     <div class="left-container">
-      <div class="image-container">
-        <img   *ngIf="imagerrr" class="pruvit" [src]="imagerrr" />
-      </div>
-      <div>
-        <input type="file" id="file" class="" (change)="onFileSelected($event)">
-        <button (click)="getImage()">Sheeesh</button>
-      </div>
+
+        <div class="img-wrapper">
+          <div class="image-container">
+            <img   *ngIf="imagerrr" class="pruvit" [src]="imagerrr" />
+          </div>
+        </div>
+
+        <div class="upload-wrapper">
+            <div class="button-30 some-width">
+              <label for="file"> Choose file
+                <input type="file" name="file" id="file" class="upload-input margin-top2"  (change)="onFileSelected($event)">
+              </label>
+            </div>
+            <button class="button-30 margin-top margin-left" (click)="getImage()">Upload</button>
+        </div>
+
     </div>
+
     <div class="right-container">
-      <h1>Profile</h1>
-      <h3>Name</h3>
-      <input  type="text" placeholder="Name" value='Ooooooo Kurva' type="text" placeholder="First name (for friends)">
-      <ng-template #loading>
-        Loading stuff...
-      </ng-template>
-      <h3>Email</h3>
-      <input *ngIf="$email | async as em; else loading" type="text" placeholder="Name" value='{{em}}' type="text" placeholder="Email address">
-      <ng-template #loading>
-        Loading stuff...
-      </ng-template>
-      <button (click)="saveChanges()">Save Changes</button>
+      <div class="h1-wrapper">
+        <h1>Profile</h1>
+      </div>
+
+      <div class="input-wrapper">
+
+        <div class="profile-name">
+          <h3>Name</h3>
+          <input  type="text" placeholder="Name" value='Thomas Smith' type="text" placeholder="First name (for friends)">
+          <ng-template #loading>
+            Loading stuff...
+          </ng-template>
+        </div>
+
+        <div class="profile-email">
+          <h3>Email</h3>
+          <input *ngIf="$email | async as em; else loading" type="text" placeholder="Name" value='{{em}}' type="text" placeholder="Email address">
+          <ng-template #loading>
+            Loading stuff...
+          </ng-template>
+          <div class="profile-button">
+            <button class="button-30" (click)="saveChanges()">Save Changes</button>
+          </div>
+        </div>
+
+      </div>
 
     </div>
   </div>
