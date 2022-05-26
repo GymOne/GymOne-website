@@ -20,6 +20,7 @@ import { rules } from '@typescript-eslint/eslint-plugin';
 import { UploadUserImageDto } from './dto/upload-user-image.dto';
 import { UserImageService } from './user-image.service';
 import { EmailHolderObject } from './dto/EmailHolderObject';
+import { UpdateMobileImgPath } from "./dto/updateMobileImgPath";
 
 @Controller('user')
 export class UserController {
@@ -56,5 +57,15 @@ export class UserController {
   @Post('getMyImage')
   getImage(@Body() ob: EmailHolderObject): Promise<any> {
     return this._imageServ.getImage(ob.email);
+  }
+
+  @Post('uploadImageMobile')
+  uploadImageMobile(@Body() filePathDto: UpdateMobileImgPath) {
+    this.userService.attachImagePath(filePathDto.filePath, filePathDto.email);
+  }
+
+  @Post('getMobileImgPath/:email')
+  getMobileImgPath(@Param('email') email: string): Promise<string>{
+    return this.userService.getMobileImgUri(email);
   }
 }
