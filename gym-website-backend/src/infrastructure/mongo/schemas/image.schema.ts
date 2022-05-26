@@ -9,16 +9,6 @@ export const ImageSchema = new Schema({
 });
 
 export const UserImageSchema = new Schema({
-  //userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  userId: { type: String, required: true },
+  userId: { type: String, required: true, unique: true },
   image: [ImageSchema],
 });
-
-WorkoutSessionSchema.index(
-  {
-    userId: 1,
-  },
-  {
-    unique: true,
-  },
-);

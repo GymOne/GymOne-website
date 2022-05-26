@@ -20,15 +20,27 @@ export class UserImageService {
   }
 
   async uploadImage(file: Express.Multer.File) {
-    console.log(file);
     const imageEnt: ImageEntity = {
       data: fs.readFileSync(file.path),
       contentType: file.mimetype,
     };
-    console.log(imageEnt);
-    this.userImageModel.create({
-      userId: file.originalname,
-      image: imageEnt,
-    });
+
+    await this.userImageModel
+      .find({
+        userId: file.originalname,
+      })
+      .remove();
+
+    await this.userImageModel.create(
+      {
+        userId: file.originalname,
+        image: imageEnt,
+      },
+      function (error, result) {
+        if (error) {
+          console.log('An error occured uploading an image!');
+        }
+      },
+    );
   }
 }
