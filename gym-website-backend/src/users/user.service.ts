@@ -40,4 +40,13 @@ export class UserService {
     });
     return newUser.save();
   }
+
+  async attachImagePath(path: string, email: string) {
+    this.userModel.updateOne({ email }, { $set: { mobileImgPath: path } }).exec();
+  }
+
+  async getMobileImgUri(email: string): Promise<string>{
+    const gj = (await this.userModel.findOne({ email })) as User;
+    return gj.mobileImgPath;
+  }
 }
