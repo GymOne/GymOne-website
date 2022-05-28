@@ -64,7 +64,7 @@ export class UserController {
     this.userService.attachImagePath(filePathDto.filePath, filePathDto.email);
   }
 
-  @Post('getMobileImgPath/:email')
+  @Get('getMobileImgPath/:email')
   getMobileImgPath(@Param('email') email: string): Promise<string>{
     return this.userService.getMobileImgUri(email);
   }
